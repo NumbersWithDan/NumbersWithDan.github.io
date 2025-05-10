@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Babylonian Approximation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<script type="text/javascript" async
+		  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">Numbers With Dan - </a></h1>
+							<p>Understanding Ancient Numerical Methods</p>
+						</div>
+					</div>
+				</header>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<header>
+							<h2>Babylonian Approximation of Square Roots</h2>
+							<p>An ancient technique for estimating square roots</p>
+						</header>
+
+						<p>The Babylonians, over 3,000 years ago, developed an iterative method to approximate the square root of numbers, particularly the square root of 2. This method, often called the "Babylonian method" or "Heron's method," is a precursor to modern numerical techniques.</p>
+
+						<h3>Mathematical Foundation</h3>
+						<p>We begin with an initial guess \( x_0 \) and refine it using the formula:</p>
+
+						<div style="text-align: center;">
+							\[
+							x_{n+1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right)
+							\]
+						</div>
+
+						<p>where:</p>
+						<ul>
+							<li>\( x_n \) is the current approximation of \( \sqrt{S} \).</li>
+							<li>\( S \) is the number whose square root we seek.</li>
+						</ul>
+
+						<h3>Step-by-Step Example for \( \sqrt{2} \)</h3>
+						<p>Let’s approximate \( \sqrt{2} \) starting with an initial guess \( x_0 = 1 \):</p>
+
+						<ul>
+							<li>*First step:  \( x_1 = \frac{1}{2} \left(1 + \frac{2}{1} \right) = \frac{1}{2} (1 + 2) = \frac{3}{2} = 1.5 \)</li>
+							<li>Second Step:  \( x_2 = \frac{1}{2} \left(1.5 + \frac{2}{1.5} \right) = \frac{1}{2} (1.5 + 1.3333) \approx 1.4167 \)</li>
+							<li>Third Step:  \( x_3 = \frac{1}{2} \left(1.4167 + \frac{2}{1.4167} \right) \approx 1.4142 \)</li>
+						</ul>
+
+						<p>As we see, the approximation rapidly converges to \( \sqrt{2} \approx 1.4142 \), demonstrating the effectiveness of this method.</p>
+                        
+						<h3>Applications and Legacy</h3>
+						<p>The Babylonian method is still used in modern numerical computing due to its rapid convergence. It highlights the ingenuity of early mathematicians and their understanding of iterative approximation.</p>
+
+						<a href="../index.html" class="button">Back to Academic Projects</a>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<ul class="contact">
+							<li><a class="icon brands fa-github" href="https://github.com/NumbersWithDan"><span class="label">Github</span></a></li>
+							<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/NumbersWithDan/"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/main.js"></script>
+	</body>
+</html>
