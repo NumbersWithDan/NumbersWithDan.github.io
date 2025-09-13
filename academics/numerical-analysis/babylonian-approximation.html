@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Babylonian Approximation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+		<script type="text/javascript" async
+		  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+		</script>
+		<style>
+			.animation-container {
+				margin: 20px 0;
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+				background: #f9f9f9;
+			}
+			.controls {
+				margin: 15px 0;
+				text-align: center;
+			}
+			.controls button {
+				margin: 0 5px;
+				padding: 8px 16px;
+				background: #3498db;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+			.controls button:hover {
+				background: #2980b9;
+			}
+			.controls button:disabled {
+				background: #bdc3c7;
+				cursor: not-allowed;
+			}
+			.step-info {
+				margin: 10px 0;
+				padding: 10px;
+				background: #ecf0f1;
+				border-radius: 4px;
+				font-family: monospace;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">Numbers With Dan - </a></h1>
+							<p>Understanding Ancient Numerical Methods</p>
+						</div>
+					</div>
+				</header>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<header>
+							<h2>Babylonian Approximation of Square Roots</h2>
+							<p>An ancient technique for estimating square roots</p>
+						</header>
+
+						<p>Over 3,000 years ago, the Babylonians came up with an iterative way to approximate square roots—especially √2. This process, now called the Babylonian method (or sometimes Heron’s method), is basically the ancestor of modern numerical techniques.</p>
+
+						<h3>The Formula</h3>
+						<p>We begin with an initial guess \( x_0 \) and refine it using the formula:</p>
+
+						<div style="text-align: center;">
+							\[
+							x_{n+1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right)
+							\]
+						</div>
+
+						<p>where:</p>
+						<ul>
+							<li>\( x_n \) is the current approximation of \( \sqrt{S} \).</li>
+							<li>\( S \) is the number whose square root we seek.</li>
+							<li>\( x_{n+1} \) is the next approximation.</li>
+						</ul>
+
+						<h3>Step-by-Step Example for \( \sqrt{2} \)</h3>
+						<p>Let’s pick \( x_0 = 1 \) as an initial guess:</p>
+
+						<ul>
+							<li>First step:  \( x_1 = \frac{1}{2} \left(1 + \frac{2}{1} \right) = \frac{1}{2} (1 + 2) = \frac{3}{2} = 1.5 \)</li>
+							<li>Second Step:  \( x_2 = \frac{1}{2} \left(1.5 + \frac{2}{1.5} \right) = \frac{1}{2} (1.5 + 1.3333) \approx 1.4167 \)</li>
+							<li>Third Step:  \( x_3 = \frac{1}{2} \left(1.4167 + \frac{2}{1.4167} \right) \approx 1.4142 \)</li>
+						</ul>
+
+						<p>AAnd we’re already basically converged to \( \sqrt{2} \approx 1.4142 \), demonstrating how we get convergence and it's fast.</p>
+
+						<h3>Interactive Visualization</h3>
+						<p>Watch the Babylonian method in action! The animation shows how each iteration brings us closer to the true value of √2.</p>
+
+						<div class="animation-container">
+							<div class="controls">
+								<label for="startValue">Starting value (x₀): </label>
+								<input type="number" id="startValue" value="1" step="0.1" min="0.1" max="5" style="margin: 0 10px; padding: 4px;">
+								<button id="startAnimation">Start Animation</button>
+								<button id="resetAnimation">Reset</button>
+								<button id="stepAnimation">Single Step</button>
+							</div>
+							<div class="step-info" id="stepInfo">
+								Ready to start! Click "Start Animation" to begin.
+							</div>
+							<div id="animation"></div>
+							<div class="steps-list" id="stepsList" style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; max-height: 200px; overflow-y: auto;">
+								<h4 style="margin: 0 0 10px 0; color: #333;">Convergence Steps:</h4>
+								<div id="stepsContent">No steps yet.</div>
+							</div>
+						</div>
+
+						<h3>Why It Works - Derivation</h3>
+						<p>Let's start  with the Babylonian iteration formula we looked at:</p>
+
+						<div style="text-align: center;">
+							\[
+							x_{n+1} = \frac{1}{2} \left( x_n + \frac{2}{x_n} \right)
+							\]
+						</div>
+
+						<p>If this sequence converges to a fixed point \( L \), then as \( n \to \infty \), we have \( x_{n+1} = x_n = L \), so:</p>
+
+						<div style="text-align: center;">
+							\[
+							L = \frac{1}{2} \left( L + \frac{2}{L} \right)
+							\]
+						</div>
+
+						<p>Solving this equation:</p>
+
+						<div style="text-align: center;">
+							\[
+							\begin{align}
+							L &= \frac{1}{2} \left( L + \frac{2}{L} \right) \\
+							2L &= L + \frac{2}{L} \\
+							2L - L &= \frac{2}{L} \\
+							L &= \frac{2}{L} \\
+							L^2 &= 2 \\
+							L &= \sqrt{2}
+							\end{align}
+							\]
+						</div>
+
+						<p>This elegant derivation shows that if the sequence converges, it must converge to \( \sqrt{2} \). The beauty of the Babylonian method lies in its geometric intuition: at each step, we're averaging our current guess with the value that would make our guess correct.</p>
+						<p>So the only possible limits are \( \sqrt{2} \) and \( -\sqrt{2} \). Starting with a positive guess gives convergence to \( \sqrt{2} \).</p>
+						<p>Geometrically, you can think of it as averaging your guess with the “correction term” \( 2/x \). That average is always closer to \( \sqrt{2} \), so you get pulled toward it.</p>
+
+						<h4>Connection to Newton's Method</h4>
+						<p>The Babylonian method is actually a special case of Newton's method applied to finding the root of \( f(x) = x^2 - 2 = 0 \).</p>
+
+						<p>Newton's method has the general form:</p>
+
+						<div style="text-align: center;">
+							\[
+							x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+							\]
+						</div>
+
+						<p>For \( f(x) = x^2 - 2 \), we have \( f'(x) = 2x \). Substituting:</p>
+
+						<div style="text-align: center;">
+							\[
+							\begin{align}
+							x_{n+1} &= x_n - \frac{x_n^2 - 2}{2x_n} \\
+							&= x_n - \frac{x_n^2}{2x_n} + \frac{2}{2x_n} \\
+							&= x_n - \frac{x_n}{2} + \frac{1}{x_n} \\
+							&= \frac{x_n}{2} + \frac{1}{x_n} \\
+							&= \frac{1}{2} \left( x_n + \frac{2}{x_n} \right)
+							\end{align}
+							\]
+						</div>
+
+						<p>That’s exactly the Babylonian formula. So the Babylonians were essentially doing a special case of Newton’s method 1,500+ years before Newton.</p>
+                        
+						<h3>Applications and Legacy</h3>
+						<p>The method is still used in modern computing because of its quadratic convergence (errors shrink like squares at each step). It’s efficient, stable, and shows how surprisingly deep early mathematics was.</p>
+						
+						<a href="../index.html" class="button">Back to Academics</a>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<ul class="contact">
+							<li><a class="icon brands fa-github" href="https://github.com/NumbersWithDan"><span class="label">Github</span></a></li>
+							<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/NumbersWithDan/"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+			<script>
+				class BabylonianAnimation {
+					constructor() {
+						this.width = 600;
+						this.height = 400;
+						this.margin = { top: 20, right: 20, bottom: 40, left: 60 };
+						this.S = 2; // The number whose square root we're finding
+						this.currentStep = 0;
+						this.steps = [];
+						this.pathPoints = []; // Track the convergence path
+						this.isAnimating = false;
+						this.animationSpeed = 1500; // milliseconds per step
+						
+						this.setupSVG();
+						this.setupScales();
+						this.drawAxes();
+						this.drawFunction();
+						this.setupEventListeners();
+					}
+
+					setupSVG() {
+						this.svg = d3.select("#animation")
+							.append("svg")
+							.attr("width", this.width)
+							.attr("height", this.height)
+							.call(d3.zoom()
+								.scaleExtent([0.5, 5])
+								.on("zoom", (event) => {
+									this.g.attr("transform", event.transform);
+								}));
+
+						// Create a group for all the zoomable elements
+						this.g = this.svg.append("g");
+					}
+
+					setupScales() {
+						this.xScale = d3.scaleLinear()
+							.domain([0, 3])
+							.range([this.margin.left, this.width - this.margin.right]);
+
+						this.yScale = d3.scaleLinear()
+							.domain([1, 3])
+							.range([this.height - this.margin.bottom, this.margin.top]);
+					}
+
+					drawAxes() {
+						// X-axis
+						this.g.append("g")
+							.attr("transform", `translate(0,${this.height - this.margin.bottom})`)
+							.call(d3.axisBottom(this.xScale))
+							.append("text")
+							.attr("x", this.width / 2)
+							.attr("y", 35)
+							.attr("fill", "black")
+							.style("text-anchor", "middle")
+							.text("x");
+
+						// Y-axis
+						this.g.append("g")
+							.attr("transform", `translate(${this.margin.left},0)`)
+							.call(d3.axisLeft(this.yScale))
+							.append("text")
+							.attr("transform", "rotate(-90)")
+							.attr("y", -40)
+							.attr("x", -this.height / 2)
+							.attr("fill", "black")
+							.style("text-anchor", "middle")
+							.text("y");
+
+						// Add diagonal line y = x
+						this.g.append("line")
+							.attr("x1", this.xScale(0))
+							.attr("y1", this.yScale(0))
+							.attr("x2", this.xScale(3))
+							.attr("y2", this.yScale(3))
+							.attr("stroke", "#999")
+							.attr("stroke-dasharray", "5,5")
+							.attr("stroke-width", 2);
+
+						// Add label for diagonal line
+						this.g.append("text")
+							.attr("x", this.xScale(2.8))
+							.attr("y", this.yScale(2.8) - 5)
+							.attr("fill", "#999")
+							.style("font-size", "12px")
+							.text("y = x");
+					}
+
+					drawFunction() {
+						// Generate points for the Babylonian function: y = 0.5 * (x + S/x)
+						const points = [];
+						for (let x = 0.1; x <= 3; x += 0.01) {
+							const y = 0.5 * (x + this.S / x);
+							points.push([x, y]);
+						}
+
+						// Draw the function curve
+						const line = d3.line()
+							.x(d => this.xScale(d[0]))
+							.y(d => this.yScale(d[1]));
+
+						this.g.append("path")
+							.datum(points)
+							.attr("fill", "none")
+							.attr("stroke", "#e74c3c")
+							.attr("stroke-width", 3)
+							.attr("d", line);
+
+						// Add function label
+						this.g.append("text")
+							.attr("x", this.xScale(1.5))
+							.attr("y", this.yScale(0.5 * (1.5 + this.S / 1.5)) - 10)
+							.attr("fill", "#e74c3c")
+							.style("font-size", "12px")
+							.text("y = ½(x + 2/x)");
+
+						// Add √2 reference line
+						const sqrt2 = Math.sqrt(this.S);
+						this.g.append("line")
+							.attr("x1", this.xScale(sqrt2))
+							.attr("y1", this.margin.top)
+							.attr("x2", this.xScale(sqrt2))
+							.attr("y2", this.height - this.margin.bottom)
+							.attr("stroke", "#27ae60")
+							.attr("stroke-dasharray", "3,3")
+							.attr("stroke-width", 2);
+
+						this.g.append("text")
+							.attr("x", this.xScale(sqrt2) + 5)
+							.attr("y", this.margin.top + 15)
+							.attr("fill", "#27ae60")
+							.style("font-size", "12px")
+							.text("√2 ≈ 1.414");
+					}
+
+					babylonianStep(x) {
+						return 0.5 * (x + this.S / x);
+					}
+
+					generateSteps(startValue) {
+						this.steps = [];
+						let x = startValue;
+						this.steps.push({ x: x, y: this.babylonianStep(x), step: 0 });
+						
+						for (let i = 1; i < 10; i++) {
+							x = this.babylonianStep(x);
+							this.steps.push({ x: x, y: this.babylonianStep(x), step: i });
+							
+							// Stop if we're very close to √2 (4 decimal places)
+							if (Math.abs(x - Math.sqrt(this.S)) < 0.0001) break;
+						}
+						
+						// Update the steps list
+						this.updateStepsList();
+					}
+
+					drawStep(stepIndex) {
+						if (stepIndex >= this.steps.length) return;
+
+						const currentStep = this.steps[stepIndex];
+						const nextX = this.babylonianStep(currentStep.x);
+						
+						// Clear only the current step elements (keep historical path)
+						this.g.selectAll(".current-step-line").remove();
+						this.g.selectAll(".current-step-point").remove();
+
+						if (stepIndex === 0) {
+							// For the first step, draw blue line straight up from X-axis
+							this.g.append("line")
+								.classed("current-step-line", true)
+								.attr("x1", this.xScale(currentStep.x))
+								.attr("y1", this.yScale(0)) // Start from X-axis
+								.attr("x2", this.xScale(currentStep.x))
+								.attr("y2", this.yScale(currentStep.x))
+								.attr("stroke", "#3498db")
+								.attr("stroke-width", 3)
+								.style("opacity", 0)
+								.transition()
+								.duration(500)
+								.style("opacity", 1);
+						}
+
+						// Add the current point to the historical path
+						this.pathPoints.push([currentStep.x, currentStep.x]);
+						
+						// Draw all historical points with alternating pattern
+						this.drawHistoricalPath(stepIndex);
+
+						// Draw current step point (highlighted)
+						this.g.append("circle")
+							.classed("current-step-point", true)
+							.attr("cx", this.xScale(currentStep.x))
+							.attr("cy", this.yScale(currentStep.x))
+							.attr("r", 0)
+							.attr("fill", "#3498db")
+							.attr("stroke", "#fff")
+							.attr("stroke-width", 2)
+							.transition()
+							.delay(stepIndex === 0 ? 500 : 0)
+							.duration(300)
+							.attr("r", 8);
+
+						// Add label for current point (positioned to avoid diagonal line)
+						const labelOffset = stepIndex === 0 ? -20 : 12;
+						const labelY = stepIndex === 0 ? this.yScale(currentStep.x) - 20 : this.yScale(currentStep.x) - 12;
+						
+						this.g.append("text")
+							.classed("current-step-point", true)
+							.attr("x", this.xScale(currentStep.x) + labelOffset)
+							.attr("y", labelY)
+							.attr("fill", "#3498db")
+							.style("font-size", "12px")
+							.style("font-weight", "bold")
+							.text(`x${stepIndex}`)
+							.style("opacity", 0)
+							.transition()
+							.delay(stepIndex === 0 ? 700 : 200)
+							.duration(300)
+							.style("opacity", 1);
+
+						// Draw next point (destination) - only for first step
+						if (stepIndex === 0) {
+							this.g.append("circle")
+								.classed("current-step-point", true)
+								.attr("cx", this.xScale(nextX))
+								.attr("cy", this.yScale(currentStep.x))
+								.attr("r", 0)
+								.attr("fill", "#e74c3c")
+								.attr("stroke", "#fff")
+								.attr("stroke-width", 2)
+								.transition()
+								.delay(1000)
+								.duration(300)
+								.attr("r", 8);
+
+							// Add label for next point
+							this.g.append("text")
+								.classed("current-step-point", true)
+								.attr("x", this.xScale(nextX) + 12)
+								.attr("y", this.yScale(currentStep.x) - 12)
+								.attr("fill", "#e74c3c")
+								.style("font-size", "12px")
+								.style("font-weight", "bold")
+								.text(`x${stepIndex + 1}`)
+								.style("opacity", 0)
+								.transition()
+								.delay(1200)
+								.duration(300)
+								.style("opacity", 1);
+						}
+
+						// Update step info with (x,y) coordinates
+						const error = Math.abs(nextX - Math.sqrt(this.S));
+						const currentY = currentStep.x; // y = x on the diagonal
+						const nextY = nextX; // y = x on the diagonal
+						
+						let stepInfo = `Step ${stepIndex + 1}: `;
+						stepInfo += `(${currentStep.x.toFixed(4)}, ${currentY.toFixed(4)}) → `;
+						stepInfo += `(${nextX.toFixed(4)}, ${nextY.toFixed(4)}) `;
+						stepInfo += `Error = ${error.toFixed(4)}`;
+						
+						document.getElementById("stepInfo").innerHTML = stepInfo;
+
+						// Update current step
+						this.currentStep = stepIndex + 1;
+					}
+
+					drawHistoricalPath(currentStepIndex) {
+						// Only draw the NEW step, don't redraw existing ones
+						if (this.pathPoints.length < 2) return;
+
+						// Get the last two points (current and previous)
+						const currentPoint = this.pathPoints[this.pathPoints.length - 2];
+						const nextPoint = this.pathPoints[this.pathPoints.length - 1];
+						
+						// Alternate above and below the diagonal line for better visibility
+						const stepIndex = this.pathPoints.length - 2;
+						const isAbove = stepIndex % 2 === 0;
+						const offset = isAbove ? 0.05 : -0.05; // Small offset above/below diagonal
+						
+						// Calculate the y-coordinate for the horizontal line (above or below diagonal)
+						const horizontalY = currentPoint[1] + offset;
+						const verticalEndY = nextPoint[1] + offset;
+						
+						// Draw horizontal line first (to the next x value)
+						this.g.append("line")
+							.classed("historical-path", true)
+							.attr("x1", this.xScale(currentPoint[0]))
+							.attr("y1", this.yScale(horizontalY))
+							.attr("x2", this.xScale(currentPoint[0])) // Start collapsed
+							.attr("y2", this.yScale(horizontalY))
+							.attr("stroke", "#9b59b6")
+							.attr("stroke-width", 3)
+							.attr("stroke-dasharray", "5,5")
+							.transition()
+							.duration(500)
+							.attr("x2", this.xScale(nextPoint[0]));
+						
+						// Draw vertical line second (down/up to the next point) - with 1 second delay
+						this.g.append("line")
+							.classed("historical-path", true)
+							.attr("x1", this.xScale(nextPoint[0]))
+							.attr("y1", this.yScale(horizontalY))
+							.attr("x2", this.xScale(nextPoint[0]))
+							.attr("y2", this.yScale(horizontalY)) // Start collapsed
+							.attr("stroke", "#9b59b6")
+							.attr("stroke-width", 3)
+							.attr("stroke-dasharray", "5,5")
+							.transition()
+							.delay(1000) // 1 second delay after horizontal
+							.duration(500)
+							.attr("y2", this.yScale(verticalEndY));
+
+						// Draw historical points (no labels to reduce clutter)
+						this.pathPoints.forEach((point, index) => {
+							if (index < this.pathPoints.length - 1) { // Don't draw the last point (it's the current step)
+								this.g.append("circle")
+									.classed("historical-point", true)
+									.attr("cx", this.xScale(point[0]))
+									.attr("cy", this.yScale(point[1]))
+									.attr("r", 4)
+									.attr("fill", "#9b59b6")
+									.attr("stroke", "#fff")
+									.attr("stroke-width", 1);
+							}
+						});
+					}
+
+					updateStepsList() {
+						const stepsContent = document.getElementById("stepsContent");
+						let stepsHTML = "";
+						
+						if (this.steps.length === 0) {
+							stepsHTML = "No steps yet.";
+						} else {
+							stepsHTML = "<div style='font-family: monospace; font-size: 13px;'>";
+							stepsHTML += "<div style='font-weight: bold; margin-bottom: 5px;'>Initial: x₀ = " + this.steps[0].x.toFixed(4) + "</div>";
+							
+							for (let i = 0; i < this.steps.length - 1; i++) {
+								const currentStep = this.steps[i];
+								const nextStep = this.steps[i + 1];
+								const error = Math.abs(nextStep.x - Math.sqrt(this.S));
+								
+								stepsHTML += `<div style='margin: 3px 0; padding: 2px 0; border-bottom: 1px solid #ddd;'>`;
+								stepsHTML += `Step ${i + 1}: x${i} = ${currentStep.x.toFixed(4)} → x${i + 1} = ${nextStep.x.toFixed(4)}`;
+								stepsHTML += ` <span style='color: #666;'>(Error: ${error.toFixed(4)})</span>`;
+								stepsHTML += `</div>`;
+							}
+							
+							// Add final result
+							const finalStep = this.steps[this.steps.length - 1];
+							const finalError = Math.abs(finalStep.x - Math.sqrt(this.S));
+							stepsHTML += `<div style='margin-top: 8px; padding: 5px; background: #e8f5e8; border-radius: 3px; font-weight: bold;'>`;
+							stepsHTML += `Final: √2 ≈ ${finalStep.x.toFixed(4)} (Error: ${finalError.toFixed(4)})`;
+							stepsHTML += `</div>`;
+							
+							stepsHTML += "</div>";
+						}
+						
+						stepsContent.innerHTML = stepsHTML;
+					}
+
+					setupEventListeners() {
+						document.getElementById("startAnimation").addEventListener("click", () => {
+							if (this.isAnimating) return;
+							
+							const startValue = parseFloat(document.getElementById("startValue").value);
+							this.generateSteps(startValue);
+							this.currentStep = 0;
+							this.pathPoints = []; // Reset the path
+							this.isAnimating = true;
+							
+							// Clear any existing historical elements
+							this.g.selectAll(".historical-path").remove();
+							this.g.selectAll(".historical-point").remove();
+							
+							document.getElementById("startAnimation").disabled = true;
+							document.getElementById("stepAnimation").disabled = true;
+							
+							this.runAnimation();
+						});
+
+						document.getElementById("resetAnimation").addEventListener("click", () => {
+							this.reset();
+						});
+
+						document.getElementById("stepAnimation").addEventListener("click", () => {
+							if (this.steps.length === 0) {
+								const startValue = parseFloat(document.getElementById("startValue").value);
+								this.generateSteps(startValue);
+								this.currentStep = 0;
+								this.pathPoints = []; // Reset the path
+							}
+							this.drawStep(this.currentStep);
+						});
+					}
+
+					runAnimation() {
+						if (this.currentStep >= this.steps.length) {
+							this.isAnimating = false;
+							document.getElementById("startAnimation").disabled = false;
+							document.getElementById("stepAnimation").disabled = false;
+							document.getElementById("stepInfo").innerHTML += " <strong>Convergence complete!</strong>";
+							return;
+						}
+
+						this.drawStep(this.currentStep);
+						
+						setTimeout(() => {
+							this.runAnimation();
+						}, this.animationSpeed);
+					}
+
+					reset() {
+						this.isAnimating = false;
+						this.currentStep = 0;
+						this.steps = [];
+						this.pathPoints = [];
+						
+						this.g.selectAll(".current-step-line").remove();
+						this.g.selectAll(".current-step-point").remove();
+						this.g.selectAll(".historical-path").remove();
+						this.g.selectAll(".historical-point").remove();
+						
+						document.getElementById("startAnimation").disabled = false;
+						document.getElementById("stepAnimation").disabled = false;
+						document.getElementById("stepInfo").innerHTML = "Ready to start! Click 'Start Animation' to begin.";
+						document.getElementById("stepsContent").innerHTML = "No steps yet.";
+					}
+				}
+
+				// Initialize animation when page loads
+				document.addEventListener("DOMContentLoaded", function() {
+					new BabylonianAnimation();
+				});
+			</script>
+	</body>
+</html>
