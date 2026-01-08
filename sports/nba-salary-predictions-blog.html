@@ -1,0 +1,618 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>NBA Player Salary Predictions: A Machine Learning Approach - Numbers With Dan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Deep dive into building machine learning models to predict NBA player salaries. Explore feature engineering, model selection, and insights from analyzing performance metrics and market factors." />
+		<meta name="keywords" content="NBA, salary prediction, machine learning, sports analytics, basketball, data science, player valuation, regression, feature engineering" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<style>
+			.code-block {
+				background: #f4f4f4;
+				border-left: 4px solid #3498db;
+				padding: 15px;
+				margin: 20px 0;
+				font-family: 'Courier New', monospace;
+				overflow-x: auto;
+			}
+			.highlight-box {
+				background: #e8f5e9;
+				border-left: 4px solid #4caf50;
+				padding: 15px;
+				margin: 20px 0;
+			}
+			.insight-box {
+				background: #fff3e0;
+				border-left: 4px solid #ff9800;
+				padding: 15px;
+				margin: 20px 0;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../index.html" id="logo">Numbers With Dan - </a></h1>
+							<p>NBA Salary Predictions Project</p>
+						</div>
+					</div>
+				</header>
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../data/index.html">Data</a></li>
+						<li><a href="../academics/index.html">Academics</a></li>
+						<li class="current">
+							<a href="index.html">Sports</a>
+							<ul>
+								<li><a href="nba-analysis.html">NBA Analysis</a></li>
+								<li><a href="player-stats.html">Player Stats</a></li>
+								<li><a href="game-predictions.html">Game Predictions</a></li>
+							</ul>
+						</li>
+						<li><a href="../about/index.html">About</a></li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+										<article class="box page-content">
+
+											<header>
+												<h2>NBA Player Salary Predictions: A Machine Learning Approach</h2>
+												<p>Building predictive models to estimate player value using performance metrics and market factors</p>
+												<ul class="meta" style="list-style: none; padding: 0; margin: 10px 0; color: #666;">
+													<li class="icon fa-clock">15 minutes read</li>
+													<li class="icon fa-calendar">2024</li>
+													<li class="icon fa-tags">Machine Learning, Sports Analytics, NBA</li>
+												</ul>
+											</header>
+
+											<span class="image featured"><img src="../images/Dirk_fadeaway.jpg" alt="NBA basketball player" /></span>
+
+											<!-- Introduction -->
+											<section>
+												<h3>Introduction</h3>
+												<p>
+													What determines an NBA player's salary? Is it points per game? Advanced metrics like Player Efficiency Rating (PER)? 
+													Or perhaps market factors like team success and city size? In this project, I set out to build machine learning 
+													models that could predict NBA player salaries based on a comprehensive set of performance metrics and contextual factors.
+												</p>
+												<p>
+													This project combines my passion for basketball with data science, exploring how modern machine learning techniques 
+													can provide insights into the complex world of NBA contract negotiations. The goal wasn't just to build a predictive 
+													model, but to understand which factors truly drive player valuation in the modern NBA.
+												</p>
+											</section>
+
+											<!-- Problem Statement -->
+											<section>
+												<h3>The Problem</h3>
+												<p>
+													This project was completed as part of my CSci 574: Final Class Project. NBA player salaries are influenced by a 
+													multitude of factors beyond simple statistics. While a player's on-court performance is clearly important, other 
+													considerations like age, position scarcity, team success, market size, and salary cap constraints all play 
+													significant roles. Traditional regression models often struggle to capture these complex, non-linear relationships.
+												</p>
+												<p>
+													My objectives were to:
+												</p>
+												<ul>
+													<li>Build accurate predictive models for NBA player salaries using the 2022-23 season data</li>
+													<li>Compare multiple machine learning algorithms to find the best approach</li>
+													<li>Identify which features are most important for salary determination</li>
+													<li>Understand the non-linear relationships between performance and compensation</li>
+													<li>Identify players who are overpaid or underpaid relative to their predicted value</li>
+												</ul>
+											</section>
+
+											<!-- Data Collection -->
+											<section>
+												<h3>Data Collection & Sources</h3>
+												<p>
+													The foundation of any machine learning project is quality data. For this project, I used the NBA Player Salaries 
+													(2022-23 Season) dataset from Kaggle, which combines player performance statistics with salary information.
+												</p>
+												<ul>
+													<li><strong>Dataset</strong>: <a href="https://www.kaggle.com/datasets/jamiewelsh2/nba-player-salaries-2022-23-season" target="_blank">NBA Player Salaries 2022-23 Season</a></li>
+													<li><strong>Data Size</strong>: 467 players with 52 features</li>
+													<li><strong>Features Include</strong>:
+														<ul>
+															<li>Traditional statistics (points, rebounds, assists, field goal percentage, etc.)</li>
+															<li>Advanced metrics (PER, WS/48, BPM, VORP, TS%, etc.)</li>
+															<li>Player demographics (age, position, team, games played, minutes)</li>
+															<li>Usage rates and efficiency metrics</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													The dataset was downloaded using the Kaggle API and included both per-game statistics and advanced analytics. 
+													I ensured data quality by handling missing values and checking for outliers before preprocessing.
+												</p>
+											</section>
+
+											<!-- Feature Engineering -->
+											<section>
+												<h3>Feature Engineering & Preprocessing</h3>
+												<p>
+													The raw dataset contained 52 features including both traditional and advanced statistics. I created a custom 
+													preprocessing pipeline to clean and transform the data:
+												</p>
+
+												<h4>Data Cleaning Steps</h4>
+												<ul>
+													<li>Dropped irrelevant columns (player names, team names, index)</li>
+													<li>Handled missing values using median imputation for numeric features</li>
+													<li>One-hot encoded categorical features (Position)</li>
+													<li>Standard scaled all numeric features</li>
+												</ul>
+
+												<h4>Features Used in Model</h4>
+												<p>The final model included:</p>
+												<ul>
+													<li><strong>Traditional Statistics</strong>: Points, rebounds, assists, field goal %, 3-point %, free throw %, etc.</li>
+													<li><strong>Advanced Metrics</strong>:
+														<ul>
+															<li>Player Efficiency Rating (PER)</li>
+															<li>Win Shares per 48 minutes (WS/48)</li>
+															<li>Box Plus/Minus (BPM)</li>
+															<li>Value Over Replacement Player (VORP)</li>
+															<li>True Shooting Percentage (TS%)</li>
+															<li>Offensive/Defensive Win Shares (OWS, DWS)</li>
+															<li>Usage Rate (USG%)</li>
+														</ul>
+													</li>
+													<li><strong>Player Demographics</strong>: Age, Position (one-hot encoded)</li>
+													<li><strong>Playing Time</strong>: Games played, games started, total minutes</li>
+												</ul>
+
+												<div class="code-block">
+# Custom preprocessing function used
+def impute_and_scale(player_dataset):
+    '''
+    Cleans, imputes, scales, and encodes a dataset of NBA player stats.
+    Drops irrelevant columns, imputes missing numeric values using median,
+    applies standard scaling to numeric columns, and one-hot encodes Position.
+    '''
+    # Drop Index, Player Name, and Team
+    player_data_cleaned = player_data_df.drop(['Index', 'Player Name', 'Team'], axis='columns')
+    
+    # Numeric pipeline: median imputation + standard scaling
+    num_pipeline = Pipeline([
+        ('imputer', SimpleImputer(strategy='median')),
+        ('scaler', StandardScaler())
+    ])
+    
+    # Categorical pipeline: one-hot encoding
+    cat_pipeline = Pipeline([
+        ('onehot', OneHotEncoder())
+    ])
+    
+    # Combine with ColumnTransformer
+    full_pipeline = ColumnTransformer([
+        ('num', num_pipeline, numeric_cols),
+        ('cat', cat_pipeline, ['Position'])
+    ])
+    
+    return processed_data
+												</div>
+
+												<div class="highlight-box">
+													<strong>Preprocessing Note:</strong> The salary target variable was also standardized using z-score 
+													normalization due to the highly skewed distribution of NBA salaries. This transformation helps models 
+													better capture relationships across the full salary range.
+												</div>
+											</section>
+
+											<!-- Data Preprocessing -->
+											<section>
+												<h3>Train/Test Split</h3>
+												<p>
+													For model evaluation, I used a standard 75/25 train-test split with a random state for reproducibility:
+												</p>
+												<div class="code-block">
+# Split into features and target
+X = player_data_final.iloc[:, 1:]  # All features except salary
+y = player_data_final.iloc[:, 0]   # Salary (target variable)
+
+# 75/25 train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# Result: 351 training samples, 117 test samples
+												</div>
+												<p>
+													The dataset was relatively small (467 players), so I used 5-fold cross-validation for model comparison 
+													and hyperparameter tuning to make the most of the available data.
+												</p>
+											</section>
+
+											<!-- Model Selection -->
+											<section>
+												<h3>Model Selection & Training</h3>
+												<p>
+													I experimented with multiple machine learning algorithms to find the best approach for this regression problem:
+												</p>
+
+												<h4>1. Linear Models (Baseline)</h4>
+												<p>
+													Started with baseline linear models using Ridge, Lasso, and ElasticNet regularization to prevent 
+													overfitting and handle multicollinearity. These provided interpretable coefficients and a good baseline 
+													for comparison.
+												</p>
+												<div class="code-block">
+# Ridge Regression with cross-validation
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import cross_val_score
+
+ridge = Ridge(alpha=100)  # Best alpha found through GridSearch
+r2_scores = cross_val_score(ridge, X_train, y_train, cv=5, scoring='r2')
+												</div>
+												<p>
+													Ridge achieved R² = 0.649 after tuning, confirming that linear models lacked sufficient predictive 
+													power for this complex problem.
+												</p>
+
+												<h4>2. Random Forest Regression</h4>
+												<p>
+													Random Forest performed well (R² = 0.734), capturing non-linear relationships and providing feature 
+													importance scores. However, when tuned with GridSearchCV, it actually performed worse (R² = 0.655), 
+													indicating the default model was overfitting to the training data.
+												</p>
+												<div class="code-block">
+# Random Forest with cross-validation
+from sklearn.ensemble import RandomForestRegressor
+
+rf = RandomForestRegressor(random_state=42)
+r2_scores = cross_val_score(rf, X_train, y_train, cv=5, scoring='r2')
+												</div>
+
+												<h4>3. Gradient Boosting Regressor (Winner)</h4>
+												<p>
+													The Gradient Boosting Regressor (from scikit-learn) provided the best predictive performance, 
+													achieving R² = 0.757 in initial testing. This model excels at capturing complex patterns and 
+													interactions between features, making it ideal for this tabular data problem.
+												</p>
+												<div class="code-block">
+# Gradient Boosting Regressor
+from sklearn.ensemble import GradientBoostingRegressor
+
+gbr = GradientBoostingRegressor(random_state=42)
+r2_scores = cross_val_score(gbr, X_train, y_train, cv=5, scoring='r2')
+												</div>
+												<p>
+													The model was then fine-tuned using GridSearchCV across 192 parameter combinations to find optimal 
+													hyperparameters.
+												</p>
+
+												<h4>4. Other Models Tested</h4>
+												<p>
+													I also tested Support Vector Regression (SVR) and K-Nearest Neighbors (KNN) for comparison. SVR 
+													achieved R² = 0.682, while KNN achieved R² = 0.634, both falling short of the ensemble methods.
+												</p>
+											</section>
+
+											<!-- Model Evaluation -->
+											<section>
+												<h3>Model Evaluation & Results</h3>
+												<p>
+													I evaluated models using multiple metrics to get a comprehensive view of performance:
+												</p>
+												<ul>
+													<li><strong>R² Score</strong>: Proportion of variance explained</li>
+													<li><strong>Mean Absolute Error (MAE)</strong>: Average prediction error in dollars</li>
+													<li><strong>Root Mean Squared Error (RMSE)</strong>: Penalizes larger errors more</li>
+													<li><strong>Mean Absolute Percentage Error (MAPE)</strong>: Percentage-based error metric</li>
+												</ul>
+
+												<h4>Initial Model Comparison</h4>
+												<p>
+													I benchmarked 8 different regression models using 5-fold cross-validation:
+												</p>
+												<div class="code-block">
+# Models tested with default parameters
+models = {
+    'Linear Regression': LinearRegression(),
+    'Ridge': Ridge(),
+    'Lasso': Lasso(),
+    'ElasticNet': ElasticNet(),
+    'Random Forest': RandomForestRegressor(),
+    'SVR': SVR(),
+    'KNN': KNeighborsRegressor(),
+    'GBR': GradientBoostingRegressor()
+}
+												</div>
+												<p>
+													Results sorted by mean R² score:
+												</p>
+												<ol>
+													<li><strong>Gradient Boosting Regressor</strong>: R² = 0.757</li>
+													<li><strong>Random Forest</strong>: R² = 0.734</li>
+													<li><strong>SVR</strong>: R² = 0.682</li>
+													<li><strong>KNN</strong>: R² = 0.634</li>
+													<li><strong>Ridge</strong>: R² = 0.598</li>
+													<li><strong>Linear Regression</strong>: R² = 0.562</li>
+												</ol>
+												<p>
+													The Gradient Boosting Regressor clearly outperformed other models, including Random Forest. 
+													Lasso and ElasticNet performed poorly, indicating that regularization alone wasn't sufficient 
+													for this problem.
+												</p>
+
+												<h4>Final Model Performance</h4>
+												<p>
+													After hyperparameter tuning using GridSearchCV with 5-fold cross-validation, the final Gradient 
+													Boosting Regressor achieved:
+												</p>
+												<ul>
+													<li><strong>Best Cross-Validation R²</strong>: 0.738</li>
+													<li><strong>Test Set R²</strong>: 0.708 (71% of salary variance explained)</li>
+													<li><strong>Test Set RMSE</strong>: 0.594 (scaled units)</li>
+												</ul>
+												<p>
+													<strong>Best Hyperparameters:</strong>
+												</p>
+												<ul>
+													<li>learning_rate: 0.1</li>
+													<li>max_depth: 3</li>
+													<li>max_features: 'log2'</li>
+													<li>min_samples_split: 5</li>
+													<li>n_estimators: 200</li>
+												</ul>
+												<div class="insight-box">
+													<strong>Interpretation:</strong> The model explains 71% of the variance in NBA salaries, which is 
+													excellent for a complex real-world problem. The test set performance (0.708) is close to the 
+													cross-validation score (0.738), indicating good generalization with minimal overfitting.
+												</div>
+
+												<h4>Model Comparison Notes</h4>
+												<p>
+													Interestingly, when I attempted to tune the Random Forest model, it actually performed worse 
+													(R² = 0.655) than the default model, suggesting the default was overfitting to the training data. 
+													Similarly, Ridge regression achieved R² = 0.649 after tuning, confirming that simpler models 
+													lacked the predictive power needed for this complex dataset.
+												</p>
+												<p>
+													The Gradient Boosting Regressor's success can be attributed to its ability to:
+												</p>
+												<ul>
+													<li>Capture non-linear relationships between features and salary</li>
+													<li>Model complex feature interactions</li>
+													<li>Handle the wide range of salary values effectively</li>
+													<li>Learn from errors iteratively through boosting</li>
+												</ul>
+											</section>
+
+											<!-- Key Insights -->
+											<section>
+												<h3>Key Insights & Findings</h3>
+												
+												<h4>1. Model Application: Identifying Overpaid and Underpaid Players</h4>
+												<p>
+													One of the most interesting applications of the model was identifying players whose actual salaries 
+													differed significantly from their predicted values. This analysis revealed fascinating patterns in 
+													NBA contract structures.
+												</p>
+												<p>
+													<strong>Most Overpaid Player:</strong> Kemba Walker
+												</p>
+												<ul>
+													<li><strong>Actual Salary:</strong> $37.3 million</li>
+													<li><strong>Predicted Salary:</strong> $7.1 million</li>
+													<li><strong>Difference:</strong> -$30.2 million (overpaid)</li>
+												</ul>
+												<p>
+													Kemba Walker's case perfectly illustrates how long-term contracts can create salary mismatches. 
+													His high salary was from a contract signed during his prime years when he was among the league's 
+													best players. However, by the 2022-23 season, his performance had declined significantly (only 
+													9 games played, PER of 15.0). The model correctly identified that his current production didn't 
+													justify his salary, and indeed, Walker was out of the NBA after this season.
+												</p>
+												<p>
+													<strong>Most Underpaid Players:</strong> The model identified several young role players who were 
+													performing well above their salary level. For example, Admiral Schofield showed strong efficiency 
+													metrics despite earning near the league minimum, demonstrating how rookie contracts and minimum 
+													salary players can provide tremendous value.
+												</p>
+
+												<h4>2. Advanced Metrics Dominate</h4>
+												<p>
+													The model's reliance on advanced metrics (PER, WS/48, BPM, VORP) over raw counting stats suggests 
+													that NBA teams (or at least the market) increasingly value efficiency and impact over volume. 
+													Players who contribute effectively to team success, regardless of their per-game averages, 
+													tend to command higher salaries.
+												</p>
+
+												<h4>3. Contract Structure Matters</h4>
+												<p>
+													The model revealed that salary isn't always tied to current performance due to contract structures. 
+													Players in the final years of long-term deals (like Kemba Walker) can be significantly overpaid 
+													relative to current production, while players on rookie contracts or minimum deals can be tremendous 
+													values.
+												</p>
+
+												<h4>4. Model Limitations Reveal Market Realities</h4>
+												<p>
+													The fact that the model explains 71% of variance (not 100%) highlights that factors beyond statistics 
+													play important roles: marketability, leadership, team needs, salary cap constraints, and contract 
+													timing all influence salaries in ways that statistics alone cannot capture.
+												</p>
+											</section>
+
+											<!-- Model Limitations -->
+											<section>
+												<h3>Limitations & Future Work</h3>
+												<p>
+													While the Gradient Boosting Regressor achieved strong performance (71% R²), there are several 
+													limitations and areas for improvement:
+												</p>
+												<ul>
+													<li><strong>Single Season Data</strong>: The model uses only 2022-23 season data. Including multiple seasons 
+														could capture career trends and trajectory</li>
+													<li><strong>Contract Timing</strong>: Salaries are often set based on future expected performance, not just 
+														current season statistics</li>
+													<li><strong>Intangible Factors</strong>: Leadership, marketability, locker room presence, and team fit 
+														aren't captured in statistics</li>
+													<li><strong>Contract Structure Constraints</strong>: Max contracts, rookie scale contracts, and veteran 
+														minimums create artificial constraints that limit the model's predictive power</li>
+													<li><strong>Team-Specific Factors</strong>: Salary cap space, luxury tax concerns, and team building 
+														strategies affect salaries beyond individual performance</li>
+													<li><strong>Market Size</strong>: While tested, market size variables weren't included in the final dataset</li>
+													<li><strong>Injury History</strong>: Historical injury data could improve predictions by accounting for risk</li>
+												</ul>
+												<p>
+													Future improvements could include:
+												</p>
+												<ul>
+													<li>Multi-season analysis to capture performance trends and career arcs</li>
+													<li>Separate models for different contract types (rookie scale, veteran minimum, mid-level, max contracts)</li>
+													<li>Incorporating player tracking data (shot location, defensive metrics, on/off court stats)</li>
+													<li>Time series models to predict future performance and salary trends</li>
+													<li>Team-level features (salary cap space, luxury tax status, team record)</li>
+													<li>Ensemble methods combining multiple models for improved accuracy</li>
+												</ul>
+											</section>
+
+											<!-- Applications -->
+											<section>
+												<h3>Applications & Use Cases</h3>
+												<p>
+													This model has several practical applications:
+												</p>
+												<ul>
+													<li><strong>Team Front Offices</strong>: Valuation tool for contract negotiations and free agency decisions</li>
+													<li><strong>Player Agents</strong>: Benchmarking tool to assess market value for clients</li>
+													<li><strong>Analysts & Media</strong>: Understanding market dynamics and identifying over/underpaid players</li>
+													<li><strong>Fantasy Basketball</strong>: Salary cap leagues could use predictions for draft strategy</li>
+												</ul>
+											</section>
+
+											<!-- Conclusion -->
+											<section>
+												<h3>Conclusion</h3>
+												<p>
+													This project successfully demonstrated that machine learning can provide valuable insights into NBA salary 
+													determination. The Gradient Boosting Regressor achieved strong predictive performance, explaining 71% of 
+													salary variance on the test set.
+												</p>
+												<p>
+													The model comparison revealed that ensemble methods (Gradient Boosting, Random Forest) significantly 
+													outperformed linear models, highlighting the non-linear and complex relationships between player performance 
+													and compensation.
+												</p>
+												<p>
+													Perhaps most interestingly, the model's application to identify overpaid and underpaid players revealed 
+													real-world contract dynamics. Cases like Kemba Walker showed how long-term contracts can create salary 
+													mismatches when player performance declines, while underpaid players demonstrated the value teams can 
+													find in young, efficient role players.
+												</p>
+												<p>
+													The intersection of sports analytics and machine learning continues to offer fascinating opportunities to 
+													understand the business side of professional sports. This project demonstrates how data science can 
+													illuminate the complex dynamics of player valuation in the modern NBA, providing tools for teams, agents, 
+													and analysts to better understand market dynamics.
+												</p>
+											</section>
+
+											<!-- GitHub & Resources -->
+											<section>
+												<h3>Resources & Code</h3>
+												<p>
+													<a href="https://github.com/NumbersWithDan/nba-salary-predictions" class="button icon brands fa-github" target="_blank">View Full Project on GitHub</a>
+													<a href="index.html" class="button">Back to Sports Projects</a>
+												</p>
+												<p>
+													The complete project is organized into three Jupyter notebooks:
+												</p>
+												<ol>
+													<li><strong>Player stats Load, Clean, and EDA</strong>: Data loading from Kaggle, cleaning, and exploratory data analysis</li>
+													<li><strong>Salary Models Evaluation</strong>: Benchmarking 8 different models and initial hyperparameter tuning</li>
+													<li><strong>Salary Model Hypertuning and Model Applications</strong>: Final model tuning and application to identify overpaid/underpaid players</li>
+												</ol>
+												<p>
+													All code, including custom preprocessing functions and the final trained model (saved as a joblib file), 
+													is available in the repository. The model can be used to predict salaries for new players or analyze 
+													market value across different player types.
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
+
+								<!-- About -->
+									<section>
+										<h2 class="major"><span>About This Project</span></h2>
+										<p>
+											This NBA salary prediction project combines sports analytics with machine learning to provide insights into 
+											player valuation and market dynamics. The models demonstrate how advanced metrics and contextual factors 
+											interact to determine player compensation in the modern NBA.
+										</p>
+									</section>
+
+							</div>
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section>
+										<h2 class="major"><span>Connect With Me</span></h2>
+										<ul class="contact">
+											<li><a class="icon brands fa-github" href="https://github.com/NumbersWithDan"><span class="label">GitHub</span></a></li>
+											<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/NumbersWithDan/"><span class="label">LinkedIn</span></a></li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Daniel Collinsworth. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
+

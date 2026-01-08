@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Babylonian Approximation</title>
+		<title>Babylonian Approximation - Numbers With Dan</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Interactive visualization of the ancient Babylonian method for approximating square roots. Explore how this 3,000-year-old technique connects to Newton's method and modern numerical analysis." />
+		<meta name="keywords" content="Babylonian method, square root, numerical analysis, Newton's method, interactive visualization, mathematics" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<script src="https://d3js.org/d3.v7.min.js"></script>
 		<script type="text/javascript" async
@@ -94,7 +96,7 @@
 							<li>Third Step:  \( x_3 = \frac{1}{2} \left(1.4167 + \frac{2}{1.4167} \right) \approx 1.4142 \)</li>
 						</ul>
 
-						<p>AAnd we’re already basically converged to \( \sqrt{2} \approx 1.4142 \), demonstrating how we get convergence and it's fast.</p>
+						<p>And we're already basically converged to \( \sqrt{2} \approx 1.4142 \), demonstrating how we get convergence and it's fast.</p>
 
 						<h3>Interactive Visualization</h3>
 						<p>Watch the Babylonian method in action! The animation shows how each iteration brings us closer to the true value of √2.</p>
@@ -149,7 +151,6 @@
 							\]
 						</div>
 
-						<p>This elegant derivation shows that if the sequence converges, it must converge to \( \sqrt{2} \). The beauty of the Babylonian method lies in its geometric intuition: at each step, we're averaging our current guess with the value that would make our guess correct.</p>
 						<p>So the only possible limits are \( \sqrt{2} \) and \( -\sqrt{2} \). Starting with a positive guess gives convergence to \( \sqrt{2} \).</p>
 						<p>Geometrically, you can think of it as averaging your guess with the “correction term” \( 2/x \). That average is always closer to \( \sqrt{2} \), so you get pulled toward it.</p>
 
@@ -181,9 +182,14 @@
 						<p>That’s exactly the Babylonian formula. So the Babylonians were essentially doing a special case of Newton’s method 1,500+ years before Newton.</p>
                         
 						<h3>Applications and Legacy</h3>
-						<p>The method is still used in modern computing because of its quadratic convergence (errors shrink like squares at each step). It’s efficient, stable, and shows how surprisingly deep early mathematics was.</p>
+						<p>The method is still used in modern computing because of its quadratic convergence (errors shrink like squares at each step). It's efficient, stable, and shows how surprisingly deep early mathematics was.</p>
 						
-						<a href="../index.html" class="button">Back to Academics</a>
+						<section>
+							<p>
+								<a href="https://github.com/NumbersWithDan/babylonian-approximation" class="button icon brands fa-github" target="_blank">View on GitHub</a>
+								<a href="../index.html" class="button">Back to Academics</a>
+							</p>
+						</section>
 					</div>
 				</section>
 
