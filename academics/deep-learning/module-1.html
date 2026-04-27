@@ -1,0 +1,830 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Introduction and Mathematical Foundations - Deep Learning Notes - Numbers With Dan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Introduction to Deep Learning covering statistical preliminaries, linear algebra, tensors, and gradient computation fundamentals." />
+		<meta name="keywords" content="deep learning, neural networks, statistics, linear algebra, tensors, gradients, machine learning" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<script type="text/javascript" async
+		  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">Numbers With Dan - </a></h1>
+							<p>Introduction and Mathematical Foundations</p>
+						</div>
+					</div>
+				</header>
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">Home</a></li>
+						<li><a href="../../data/index.html">Data</a></li>
+						<li class="current">
+							<a href="../index.html">Academics</a>
+							<ul>
+								<li><a href="../numerical-analysis/index.html">Numerical Analysis</a></li>
+								<li><a href="../real-analysis.html">Real Analysis</a></li>
+								<li><a href="../statistics.html">Statistics</a></li>
+								<li class="current"><a href="index.html">Deep Learning</a></li>
+							</ul>
+						</li>
+						<li><a href="../../sports/index.html">Sports</a></li>
+						<li><a href="../../about/index.html">About</a></li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>Introduction and Mathematical Foundations</h2>
+												<p>An overview of deep learning, statistical concepts, linear algebra, and gradient computation</p>
+											</header>
+
+											<section>
+												<h3>Introduction and Statistical Preliminaries</h3>
+
+												<h4>What is Deep Learning?</h4>
+
+												<h5>Deep Learning in Everyday Life</h5>
+												<p>
+													Deep learning has become ubiquitous in modern technology, often operating behind the scenes 
+													without users realizing it. Photo management systems use deep learning algorithms to 
+													automatically categorize images, recognize faces, and suggest tags for friends and family 
+													members. Modern smartphones leverage deep learning for facial recognition to unlock devices, 
+													with algorithms that can distinguish between the device owner and others with high accuracy.
+												</p>
+												<p>
+													Natural language processing applications, from chatbots to voice assistants like Siri, Alexa, 
+													and Google Assistant, increasingly rely on deep learning models at their core. These systems 
+													can understand context, generate human-like responses, and adapt to individual speaking patterns. 
+													The lecturer emphasizes that these technologies are fundamentally "powered by deep learning" 
+													at their core, representing a significant shift from earlier rule-based or simple machine learning approaches.
+												</p>
+
+												<h5>Definition and Characteristics</h5>
+												<p>
+													At its essence, <strong>deep learning is machine learning that works exceptionally well</strong>. 
+													The key distinguishing feature is <emph>scalability</emph>—deep learning models can effectively 
+													leverage vast amounts of data. Unlike traditional machine learning methods that may plateau in 
+													performance, deep learning models often continue to improve as more data becomes available.
+												</p>
+												<p>
+													A crucial advantage of deep learning is its ability to learn <emph>representations</emph> that 
+													generalize to new concepts. Rather than requiring manual feature engineering, deep neural networks 
+													can automatically discover hierarchical feature representations from raw data. For example, in image 
+													recognition, early layers might learn to detect edges, middle layers combine these into shapes, and 
+													deeper layers recognize objects or scenes. This representational learning capability represents a 
+													significant advancement over traditional machine learning methods.
+												</p>
+
+												<h5>Relationship Between Statistics, Machine Learning, and Deep Learning</h5>
+												<p>
+													Understanding the historical relationship between these fields provides important context. 
+													Machine learning originated from statistics and was once treated as a subfield of statistics. 
+													However, as machine learning evolved to emphasize prediction over explanation, it became 
+													increasingly distinct from classical statistics, which focuses more on inference and hypothesis testing.
+												</p>
+												<p>
+													Today, machine learning and statistics are somewhat disjoint fields, though they maintain significant 
+													overlap. Deep learning is a subfield of machine learning that continues to overlap with statistics, 
+													particularly in areas like probabilistic modeling and Bayesian methods. The fundamental connection 
+													across all three fields is their shared use of <emph>models</emph>—specifically statistical models—to 
+													predict or measure properties of data.
+												</p>
+
+												<h5>Models Across Fields</h5>
+												<p>
+													The purpose and nature of models differ across these fields:
+												</p>
+												<ul>
+													<li><strong>Statistics</strong>: Models are used to analyze and explain data, understand trends, 
+														and make inferences about populations from samples.</li>
+													<li><strong>Machine Learning</strong>: Models focus on making predictions on unseen data, with 
+														less emphasis on interpretability and more on predictive accuracy.</li>
+													<li><strong>Deep Learning</strong>: Uses a specific class of models called deep networks (or neural 
+														networks). These models are characterized by being "much bigger" and capable of fitting data 
+														"much, much better" than traditional models, often containing millions or even billions of parameters.</li>
+												</ul>
+
+												<h5>Example: Weather Data and Statistical Modeling</h5>
+												<p>
+													Consider raw weather data consisting of many temperature measurements over time—perhaps hourly 
+													or even per-minute measurements collected over years. Statistics can summarize this data through 
+													various transformations and aggregations:
+												</p>
+												<ul>
+													<li>Maximum and minimum temperature per day</li>
+													<li>Monthly averages</li>
+													<li>Multi-year averages and trends</li>
+												</ul>
+												<p>
+													However, some questions—such as whether winters are getting warmer—may be difficult to visualize 
+													directly and require statistical models. A <strong>statistical model</strong> is a function that maps 
+													input data \( x \) to an output. For example, \( x \) could represent the date of measurement, and 
+													the output could be the predicted temperature.
+												</p>
+												<p>
+													A key feature of statistical models is that they are <emph>parametric</emph>, meaning they depend 
+													on parameters denoted \( \theta \). These parameters allow the model to adjust and fit to the data. 
+													For instance, in a linear model \( y = \theta_1 x + \theta_0 \), the parameters \( \theta_0 \) and 
+													\( \theta_1 \) control the intercept and slope, respectively.
+												</p>
+
+												<h5>Historical Sketch of Deep Learning</h5>
+												<p>
+													The roots of deep learning trace back to the perceptron, introduced in a paper around 1957 (the lecturer 
+													mentions some uncertainty about exact dates). Early researchers were highly optimistic, believing that 
+													machine learning would solve almost any problem within about 10 years. However, this enthusiasm was 
+													short-lived due to significant constraints:
+												</p>
+												<ul>
+													<li><strong>Limited data</strong>: Unlike today's era of big data, datasets were small and often manually curated</li>
+													<li><strong>Extremely limited compute</strong>: Modern GPUs didn't exist, and computers were orders of magnitude slower</li>
+													<li><strong>Small models</strong>: Given the constraints, models couldn't be very large or complex</li>
+												</ul>
+												<p>
+													As these limitations became clear, funding decreased dramatically. A influential book on perceptrons 
+													attempted to discredit early perceptron-based methods, highlighting fundamental limitations. The result 
+													was an "AI winter" lasting almost 20 years, during which neural network research was largely abandoned.
+												</p>
+												<p>
+													The revival began when backpropagation was "discovered for the final time" (the lecturer's phrasing 
+													acknowledges multiple independent discoveries throughout history). This algorithm enabled training of 
+													bigger and more interesting neural networks by efficiently computing gradients through the network. 
+													Throughout the 1990s and early 2000s, classical machine learning methods remained ahead of neural 
+													networks in most applications.
+												</p>
+												<p>
+													A pivotal moment came around 2005, when a research group rebranded "neural networks" as "deep learning" 
+													(the lecturer claims the term didn't exist before this). This rebranding was partly necessitated by 
+													the field's reputation—including neural networks in a paper title at top machine learning venues 
+													reportedly increased chances of rejection. The new name helped the field gain renewed acceptance and momentum.
+												</p>
+												<p>
+													Since then, deep learning has achieved state-of-the-art performance across many domains:
+												</p>
+												<ul>
+													<li><strong>By 2010</strong>: State-of-the-art in speech recognition</li>
+													<li><strong>By 2012</strong>: State-of-the-art in image recognition (computer vision), marked by 
+														the breakthrough ImageNet performance of AlexNet</li>
+													<li><strong>By 2014</strong>: Almost the entire computer vision field had adopted deep networks</li>
+													<li><strong>By 2017</strong>: Deep learning took over natural language processing with the transformer architecture</li>
+												</ul>
+												<p>
+													Today, there is virtually no machine learning field where deep learning is not at least a competitor, 
+													and in many domains it has become the dominant approach.
+												</p>
+
+												<h5>Summary</h5>
+												<p>
+													Deep learning is a subfield of machine learning that studies deep networks—powerful, generalizable 
+													models capable of fitting immense amounts of data. These networks can automatically learn hierarchical 
+													representations from data, enabling breakthroughs across speech recognition, computer vision, natural 
+													language processing, and many other domains.
+												</p>
+											</section>
+
+											<section>
+												<h3>Statistical Notation and Concepts for Deep Learning</h3>
+
+												<h4>Motivation: Why Statistics Matters</h4>
+												<p>
+													Understanding statistics is crucial for deep learning because machine learning was born out of 
+													statistics and inherited much of its notation (though with some modifications). The lecturer notes 
+													that there tends to be more "abuse of notation" in machine learning and deep learning than in 
+													statistics, making familiarity with the original statistical concepts important. This section serves 
+													as a notation review rather than a complete statistics guide.
+												</p>
+
+												<h4>Randomness and Probability</h4>
+												<p>
+													Consider a simple example: tossing a coin. We don't know the outcome (heads or tails) in advance, 
+													making it a <emph>random</emph> process. From a physics perspective, one might argue that if we 
+													could perfectly observe all conditions—the exact weight distribution of the coin, where the hand 
+													applies force, the exact force magnitude, air resistance, and landing surface—we could predict 
+													the outcome. However, in practice, we cannot observe all these factors perfectly, so the process 
+													<emph>appears random</emph> to us.
+												</p>
+												<p>
+													If a coin is unbiased or fair, there is roughly a 50/50 chance of heads versus tails. Interestingly, 
+													the lecturer notes that coin tosses are not exactly 50/50—the initially-top side has a slightly 
+													higher chance of landing on top again due to the physics of coin rotation. This has been verified 
+													through large-scale experiments and detailed physics analysis.
+												</p>
+
+												<h4>Basic Probability Notation</h4>
+												<p>
+													We use the following notation:
+												</p>
+												<ul>
+													<li><strong>Random variable</strong>: Denoted \( x \)</li>
+													<li><strong>Specific value (outcome)</strong>: Denoted \( a \)</li>
+													<li><strong>Event</strong>: "\( x \) taking value \( a \)"</li>
+													<li><strong>Probability</strong>: Written \( p(x) \) or more precisely \( p(x = a) \)</li>
+												</ul>
+												<p>
+													In practice, the notation \( p(x) \) is often used when the context makes the specific value clear, 
+													though \( p(x = a) \) is more precise.
+												</p>
+
+												<h4>Discrete vs. Continuous Outcomes</h4>
+												<p>
+													Outcomes can be either discrete or continuous:
+												</p>
+												<ul>
+													<li><strong>Discrete example</strong>: A coin toss with outcomes heads or tails (categorical outcomes)</li>
+													<li><strong>Continuous example</strong>: The angle \( \alpha \) at which a coin lands on the table</li>
+												</ul>
+												<p>
+													For continuous random variables, the probability of landing at <emph>exactly</emph> a specific angle 
+													\( \alpha \) is effectively zero (or technically undefined). Instead, we work with cumulative 
+													distribution concepts: the probability of landing between \( 40^\circ \) and \( 50^\circ \) is meaningful.
+												</p>
+												<p>
+													For continuous variables, we use <strong>probability density</strong> rather than probability. The 
+													probability density is defined as:
+												</p>
+												<div style="text-align: center; margin: 20px 0;">
+													\[
+													\text{Probability density} = \frac{\text{Probability of landing in a range}}{\text{Length of the range}}.
+													\]
+												</div>
+
+												<h4>Unified Notation Convention</h4>
+												<p>
+													In this course, a unified notation convention will be used that does not distinguish between:
+												</p>
+												<ul>
+													<li>Probability mass (for discrete variables)</li>
+													<li>Probability density (for continuous variables)</li>
+												</ul>
+												<p>
+													The symbol \( p(x) \) will be used for both. The variable \( x \) may be discrete or continuous; 
+													the course will "not care about which one it is" (lecturer phrasing), focusing on the underlying 
+													mathematical principles rather than technical distinctions.
+												</p>
+
+												<h4>Basic Properties of Probabilities and Densities</h4>
+												<p>
+													All probability distributions (whether discrete or continuous) satisfy:
+												</p>
+												<ul>
+													<li><strong>Non-negativity</strong>:
+														\[
+														p(x) \ge 0.
+														\]
+													</li>
+													<li><strong>Normalization</strong>:
+														<ul>
+															<li>Discrete case: \( \sum_x p(x) = 1 \)</li>
+															<li>Continuous case: \( \int p(x)\,dx = 1 \)</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													The function \( p \) maps:
+												</p>
+												<ul>
+													<li><strong>Discrete</strong>: Outcomes to values in \( [0,1] \)</li>
+													<li><strong>Continuous</strong>: Real values to non-negative real values (note: densities can exceed 1, 
+														unlike discrete probabilities)</li>
+												</ul>
+
+												<h4>Distributions as a Recurring Tool</h4>
+												<p>
+													Probability distributions will be used throughout the course to:
+												</p>
+												<ul>
+													<li>Describe data and data-generating processes</li>
+													<li>Describe outputs of models</li>
+													<li>Reason about labels attached to data</li>
+												</ul>
+												<p>
+													For example, the visual world you observe daily can be viewed as a probability distribution over 
+													visual stimuli. Common sights (like faces, cars, or trees) correspond to high-probability events, 
+													while novel or unusual sights correspond to low-probability events. Similarly, weather and 
+													temperature over time can be viewed as distributions over possible temperature values.
+												</p>
+
+												<h4>Three Categories of Distributions</h4>
+												<p>
+													It's important to distinguish between three types of distributions:
+												</p>
+												<ul>
+													<li><strong>Data-generating distribution</strong>: The real-world process that produces data 
+														(e.g., the climate/weather system itself)</li>
+													<li><strong>Empirical distribution</strong>: What we actually observe as samples 
+														(e.g., measured weather data from sensors)</li>
+													<li><strong>Model distribution</strong>: The distribution implied by a model fit to the empirical data</li>
+												</ul>
+												<p>
+													In general, these three distributions are not the same, though in simple examples they may coincide. 
+													The goal of machine learning is often to make the model distribution match the data-generating 
+													distribution as closely as possible, using the empirical distribution as our only window into the 
+													true data-generating process.
+												</p>
+
+												<h4>Expectation</h4>
+												<p>
+													The <strong>expectation</strong> (or expected value) of a function \( f(x) \) under distribution \( p \) 
+													is a weighted average:
+												</p>
+												<ul>
+													<li><strong>Discrete case</strong>: Weighted sum over outcomes
+														\[
+														\mathbb{E}_{x \sim p}[f(x)] = \sum_x p(x) f(x)
+														\]
+													</li>
+													<li><strong>Continuous case</strong>: Integral instead of sum
+														\[
+														\mathbb{E}_{x \sim p}[f(x)] = \int p(x) f(x) dx
+														\]
+													</li>
+												</ul>
+												<p>
+													The same expectation symbol is used for both; interpretation depends on whether \( x \) is discrete 
+													or continuous. Notational shortcuts are common:
+												</p>
+												<ul>
+													<li>Drop the \( x \) subscript if implied: \( \mathbb{E}[f] \)</li>
+													<li>Drop the explicit distribution \( p \) if clear from context</li>
+													<li>Drop function arguments if clear: \( \mathbb{E}[f] \) instead of \( \mathbb{E}[f(x)] \)</li>
+												</ul>
+												<p>
+													Expectation has useful linearity properties:
+													\[
+													\mathbb{E}[f + g] = \mathbb{E}[f] + \mathbb{E}[g], \qquad
+													\mathbb{E}[c f] = c \mathbb{E}[f],
+													\]
+													where \( c \) is a constant.
+												</p>
+
+												<h4>Mean and Variance</h4>
+												<p>
+													The <strong>mean</strong> (or expected value) of a distribution is the average value it takes, 
+													representing the "center" of the distribution. For example, in a Gaussian (normal) distribution, 
+													the mean is the peak of the bell curve.
+												</p>
+												<p>
+													The <strong>variance</strong> measures the spread or deviation of values around the mean. A 
+													distribution with small variance has values clustered tightly around the mean, while large variance 
+													indicates values are spread out.
+												</p>
+												<p>
+													Important caveats:
+												</p>
+												<ul>
+													<li><strong>Discrete probabilities</strong>: Satisfy \( p(x) \le 1 \)</li>
+													<li><strong>Continuous densities</strong>: Can exceed 1 (a common coding pitfall if one assumes otherwise)</li>
+													<li><strong>Variance</strong>: May be finite for discrete distributions, but continuous distributions can have infinite variance</li>
+												</ul>
+
+												<h4>Sampling</h4>
+												<p>
+													<strong>Sampling</strong> means drawing outcomes from a distribution. Examples include:
+												</p>
+												<ul>
+													<li>Rolling a fair die (sampling from a uniform discrete distribution)</li>
+													<li>Typing on a keyboard (sometimes hitting the wrong key—sampling from a distribution of possible keystrokes)</li>
+													<li>Taking a photo (sampling a snapshot from the visual world distribution)</li>
+												</ul>
+												<p>
+													Important point: Samples are always biased in the sense that a finite number of samples will not 
+													exactly match the true distribution. Exact matching occurs only in the limit of infinitely many samples. 
+													For example, with 10 coin flips, getting exactly 5 heads and 5 tails has a relatively small probability, 
+													and repeating the experiment yields wide variation. This sampling variability is fundamental to 
+													understanding why we need statistical methods.
+												</p>
+
+												<h4>Statistical Models</h4>
+												<p>
+													A <strong>statistical model</strong> is a function with parameters \( \theta \) that maps inputs to outputs. 
+													Two main types:
+												</p>
+												<ul>
+													<li><strong>Regression</strong>: Maps real-valued inputs to real-valued outputs
+														<ul>
+															<li>Example: Linear regression fits a line to data points</li>
+															<li>Output: A continuous value (e.g., predicted temperature given a date)</li>
+														</ul>
+													</li>
+													<li><strong>Classification</strong>: Maps inputs to class outputs or probabilities over classes
+														<ul>
+															<li>Maps real values to probabilities over discrete events</li>
+															<li>Probabilities are positive and sum to one</li>
+															<li>Example: Image classification (dog vs. cat vs. bird)</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													In summary, models typically map "real values to real values" (regression) or "real values to 
+													probabilities" (classification).
+												</p>
+
+												<h4>Learning from Data</h4>
+												<p>
+													In machine learning, the goal is to find parameters \( \theta \) given data. Data can be viewed 
+													as samples from a data-generating distribution. Two kinds of data:
+												</p>
+												<ul>
+													<li><strong>Unlabeled data</strong>: Raw data without target values (e.g., internet text/images, raw photo collections)</li>
+													<li><strong>Labeled data</strong>: Data with labels attached (e.g., photos with tags, dates with corresponding temperatures)</li>
+												</ul>
+												<p>
+													This course will focus primarily on labeled data. The goal is to learn a model that, on new data, 
+													can infer the labels that the new data should have.
+												</p>
+
+												<h4>Summary of Statistics Review</h4>
+												<p>
+													Key takeaways:
+												</p>
+												<ul>
+													<li>A statistical model learns to predict \( y \) from input \( x \) using parameters \( \theta \)</li>
+													<li>Expectations are weighted averages under \( p(x) \)</li>
+													<li>Mean and variance measure the center and spread of a distribution</li>
+													<li>Distributions are fundamental tools for describing data, models, and learning processes</li>
+												</ul>
+											</section>
+
+											<section>
+												<h3>Linear Algebra Basics for Deep Learning</h3>
+
+												<h4>Purpose of Linear Algebra</h4>
+												<p>
+													Linear algebra serves as the mathematical language of deep learning. It enables compact notation 
+													and efficient computation for large-scale operations. The emphasis in this course is on notation 
+													and computation rather than geometric interpretations, though geometric intuition can be valuable 
+													for understanding.
+												</p>
+
+												<h4>Vectors</h4>
+												<p>
+													A <strong>vector</strong> is a 1-dimensional array of numbers (analogous to a Python list of numbers). 
+													Notation: bold lowercase letter, e.g., \( \mathbf{v} \). Elements are denoted 
+													\( \mathbf{v} = (v_1, v_2, \dots, v_n) \), where \( n \) is the dimension of the vector.
+												</p>
+
+												<h5>Elementwise Operations</h5>
+												<p>
+													For two vectors of the same size (e.g., \( \mathbf{v} \) and \( \mathbf{w} \)):
+												</p>
+												<ul>
+													<li>Addition and subtraction are performed elementwise</li>
+													<li>Multiplication and division can also be performed elementwise</li>
+												</ul>
+												<p>
+													<strong>Notation convention</strong>:
+												</p>
+												<ul>
+													<li>Elementwise multiplication is denoted by a dot: \( \mathbf{v} \cdot \mathbf{w} \)</li>
+													<li>Matrix-vector or matrix-matrix multiplication is written <emph>without</emph> a dot: \( A\mathbf{v} \)</li>
+													<li>Division refers to elementwise division</li>
+												</ul>
+
+												<h4>Matrices</h4>
+												<p>
+													A <strong>matrix</strong> is a 2-dimensional array of numbers. Entries are identified by their row 
+													and column position. Notation: typically uppercase letters, e.g., \( A \), with entry \( A_{ij} \) 
+													denoting the element in row \( i \) and column \( j \).
+												</p>
+
+												<h5>Transpose</h5>
+												<p>
+													<strong>Transposing</strong> a matrix mirrors it along its diagonal, swapping position \( (i,j) \) 
+													with position \( (j,i) \). The transpose of matrix \( A \) is denoted \( A^\top \).
+												</p>
+												<p>
+													Transposing a vector converts a column vector into a row vector (and vice versa). This becomes 
+													important for gradient notation because gradients are often written as row vectors, while inputs 
+													are column vectors.
+												</p>
+
+												<h4>Matrix Multiplication</h4>
+												<p>
+													Given two matrices \( A \) and \( B \), matrix multiplication produces an output matrix \( C = AB \).
+												</p>
+												<p>
+													<strong>Dimension compatibility</strong>: The number of columns in \( A \) must equal the number 
+													of rows in \( B \).
+												</p>
+												<p>
+													<strong>Computation</strong>: For each entry \( C_{ij} \) in the result:
+												</p>
+												<ol>
+													<li>Take row \( i \) of \( A \) and column \( j \) of \( B \)</li>
+													<li>Multiply corresponding elements elementwise</li>
+													<li>Sum the products to get \( C_{ij} \)</li>
+												</ol>
+												<p>
+													<strong>Example</strong>: If \( A \in \mathbb{R}^{2 \times 4} \) and \( B \in \mathbb{R}^{4 \times 3} \), 
+													then \( C = AB \in \mathbb{R}^{2 \times 3} \). The "4" must match between the columns of \( A \) and 
+													rows of \( B \); the resulting dimensions are 2×3.
+												</p>
+
+												<h4>Matrix-Vector Multiplication</h4>
+												<p>
+													Vectors are column vectors by default. If \( M \) is a matrix and \( \mathbf{v} \) is a column vector, 
+													then \( M\mathbf{v} \) produces another column vector.
+												</p>
+												<p>
+													For row vectors, the vector must be multiplied on the left using the transpose: \( \mathbf{v}^\top M \).
+												</p>
+
+												<h4>Dot Product (Inner Product)</h4>
+												<p>
+													The <strong>dot product</strong> (or inner product) of two vectors is a scalar:
+												</p>
+												<div style="text-align: center; margin: 20px 0;">
+													\[
+													\mathbf{v}^\top \mathbf{w} = \sum_{i} v_i w_i
+													\]
+												</div>
+												<p>
+													This is computed by multiplying corresponding elements and summing. The result is a scalar 
+													(sometimes described as a "1×1 matrix").
+												</p>
+												<p>
+													The <strong>outer product</strong> \( \mathbf{v} \mathbf{w}^\top \) produces a matrix, where the 
+													\( (i,j) \) entry is \( v_i w_j \).
+												</p>
+
+												<h4>Norms</h4>
+												<p>
+													The <strong>Euclidean norm</strong> (or \( L_2 \) norm) of a vector measures its "length" in space:
+												</p>
+												<div style="text-align: center; margin: 20px 0;">
+													\[
+													\|\mathbf{v}\| = \sqrt{\sum_i v_i^2}
+													\]
+												</div>
+												<p>
+													This is computed by squaring each element, summing them, then taking the square root. While this 
+													has a geometric interpretation (distance from origin), the course focuses on computation.
+												</p>
+												<p>
+													The <strong>matrix norm</strong> (Frobenius norm) is the sum of squares of all matrix elements:
+												</p>
+												<div style="text-align: center; margin: 20px 0;">
+													\[
+													\|A\|_F = \sqrt{\sum_{i,j} A_{ij}^2}
+													\]
+												</div>
+
+												<h4>Example: Centering Data</h4>
+												<p>
+													<strong>Problem</strong>: Given values \( a_1, \dots, a_n \), compute \( \mathbf{b} = \mathbf{a} - \mu \), 
+													where \( \mu \) is the mean of all \( a_i \).
+												</p>
+												<p>
+													<strong>Raw Python approach</strong>:
+												</p>
+												<ol>
+													<li>Loop to sum entries</li>
+													<li>Divide by length to compute mean</li>
+													<li>Loop again to subtract mean from each entry</li>
+												</ol>
+												<p>
+													<strong>Linear algebra expression</strong>:
+													\[
+													\mathbf{b} = \mathbf{a} - \frac{\mathbf{a} \cdot \mathbf{1}}{n},
+													\]
+													where \( \mathbf{1} \) is a vector of ones, so \( \mathbf{a} \cdot \mathbf{1} \) gives the sum of all \( a_i \).
+												</p>
+												<p>
+													<strong>PyTorch expression</strong>:
+													\[
+													\mathbf{b} = \mathbf{a} - \text{mean}(\mathbf{a}),
+													\]
+													where <code>mean</code> computes the average of the values. This compact notation is one reason why 
+													linear algebra frameworks are so powerful for deep learning.
+												</p>
+											</section>
+
+											<section>
+												<h3>Tensors</h3>
+
+												<h4>Motivation and Definition</h4>
+												<p>
+													Vectors (1D) and matrices (2D) are not sufficient for representing all types of data in deep learning. 
+													<strong>Tensors</strong> extend linear algebra to represent higher-dimensional data. A tensor is an 
+													\( n \)-dimensional array (ndarray) of numbers.
+												</p>
+												<p>
+													Key attributes:
+												</p>
+												<ul>
+													<li><strong>Shape</strong>: The size along each dimension (e.g., \( (3, 224, 224) \) for an image)</li>
+													<li><strong>Number of dimensions</strong>: The length of the shape tuple (also called rank or order)</li>
+												</ul>
+
+												<h4>Examples of Tensor Dimensionality</h4>
+												<ul>
+													<li><strong>1D tensor</strong>: Vector (e.g., \( [1, 2, 3] \))</li>
+													<li><strong>2D tensor</strong>: Matrix (e.g., \( [[1, 2], [3, 4]] \))</li>
+													<li><strong>3D tensor</strong>: 
+														<ul>
+															<li>Image (height × width × channels)</li>
+															<li>Spectrogram of a waveform (time × frequency × channels)</li>
+														</ul>
+													</li>
+													<li><strong>4D tensor</strong>:
+														<ul>
+															<li>Video (height × width × channels × time)</li>
+															<li>Batch of images (batch_size × height × width × channels)</li>
+														</ul>
+													</li>
+												</ul>
+
+												<h4>Image and Video Dimensions</h4>
+												<p>
+													An image is typically represented as a 3D tensor with dimensions:
+												</p>
+												<ul>
+													<li><strong>Height</strong>: Number of pixels vertically</li>
+													<li><strong>Width</strong>: Number of pixels horizontally</li>
+													<li><strong>Channels</strong>: Number of color channels
+														<ul>
+															<li>RGB images: 3 channels (red, green, blue)</li>
+															<li>Hyperspectral images: 20–30 channels (as mentioned by the lecturer)</li>
+															<li>Grayscale: 1 channel</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													Video adds an additional time dimension, creating a 4D tensor.
+												</p>
+
+												<h4>PyTorch-Specific Notes</h4>
+												<p>
+													In PyTorch, tensors are the fundamental building block for representing values and data. Tensors have:
+												</p>
+												<ul>
+													<li><strong>Shape</strong>: Dimension sizes and number of dimensions</li>
+													<li><strong>dtype</strong>: Data type (e.g., integer, floating point) with selectable precision</li>
+												</ul>
+												<p>
+													The number of dimensions is given by the length of the shape tuple. For example, 
+													<code>tensor.shape = (3, 224, 224)</code> indicates a 3D tensor.
+												</p>
+											</section>
+
+											<section>
+												<h3>Gradients, Jacobians, and the Chain Rule for Deep Networks</h3>
+
+												<h4>Motivation: Optimization via Gradients</h4>
+												<p>
+													A fundamental question in deep learning is: how do we optimize (train) deep networks? One key 
+													insight is that a deep network is a gigantic nested function—functions inside functions inside functions. 
+													Training deep networks centers on computing partial derivatives and gradients of these nested functions, 
+													which is where the chain rule becomes essential.
+												</p>
+
+												<h4>Gradients Depend on Input/Output Dimensions</h4>
+												<p>
+													The dimensionality of gradients depends on the input and output dimensions of the function:
+												</p>
+
+												<h5>Case 1: Scalar → Scalar</h5>
+												<p>
+													For a function \( f: \mathbb{R} \to \mathbb{R} \), the derivative is a scalar. This is the familiar 
+													calculus derivative: \( \frac{df}{dx} \).
+												</p>
+
+												<h5>Case 2: Vector → Scalar</h5>
+												<p>
+													For a function \( f: \mathbb{R}^n \to \mathbb{R} \), the gradient with respect to the input vector 
+													\( \mathbf{x} \) is a vector:
+													\[
+													\nabla_\mathbf{x} f = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right)^\top
+													\]
+												</p>
+												<p>
+													Note: Gradients are usually row vectors (lecturer emphasis), but this is written as a column vector 
+													here for clarity. The important point is that the gradient has the same dimensionality as the input.
+												</p>
+
+												<h5>Case 3: Vector → Vector</h5>
+												<p>
+													For a function \( f: \mathbb{R}^n \to \mathbb{R}^m \), the derivative object is a matrix with one 
+													partial derivative per (output, input) pair. This matrix is called the <strong>Jacobian</strong>:
+													\[
+													J_f = \begin{bmatrix}
+														\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+														\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n} \\
+														\vdots & \vdots & \ddots & \vdots \\
+														\frac{\partial f_m}{\partial x_1} & \frac{\partial f_m}{\partial x_2} & \cdots & \frac{\partial f_m}{\partial x_n}
+													\end{bmatrix}
+													\]
+												</p>
+												<p>
+													The Jacobian has shape \( m \times n \):
+												</p>
+												<ul>
+													<li>Rows correspond to output dimensions</li>
+													<li>Columns correspond to input dimensions</li>
+												</ul>
+
+												<h4>Chain Rule for Nested Functions</h4>
+												<p>
+													Consider two functions:
+												</p>
+												<ul>
+													<li>\( g_1: \mathbb{R}^n \to \mathbb{R}^m \) (maps \( n \) values to \( m \) values)</li>
+													<li>\( g_2: \mathbb{R}^m \to \mathbb{R}^k \) (maps \( m \) values to \( k \) values)</li>
+												</ul>
+												<p>
+													The composition \( h(x) = g_2(g_1(x)) \) maps \( \mathbb{R}^n \to \mathbb{R}^k \). To compute the 
+													Jacobian of \( h \), we use the <strong>chain rule</strong>:
+												</p>
+												<div style="text-align: center; margin: 20px 0;">
+													\[
+													J_h = J_{g_2} \cdot J_{g_1}
+													\]
+												</div>
+												<p>
+													More precisely:
+												</p>
+												<ol>
+													<li>Compute the Jacobian of the inner function \( g_1 \) (has shape \( m \times n \))</li>
+													<li>Compute the Jacobian of the outer function \( g_2 \) evaluated at \( g_1(x) \) (has shape \( k \times m \))</li>
+													<li>Multiply the Jacobians (matrix multiplication) to get \( J_h \) with shape \( k \times n \)</li>
+												</ol>
+												<p>
+													This is the fundamental principle that makes training deep networks possible.
+												</p>
+
+												<h4>Backpropagation</h4>
+												<p>
+													<strong>Backpropagation</strong> is "essentially the chain rule" computed in a very specific way. 
+													Instead of computing full Jacobians (which can be extremely large), backpropagation computes 
+													gradients efficiently by working backward through the network, reusing intermediate computations. 
+													The details of how backpropagation is implemented efficiently will be covered in later modules.
+												</p>
+
+												<h4>Key Takeaways</h4>
+												<ul>
+													<li>Gradients are usually row vectors (lecturer emphasis)</li>
+													<li>The chain rule is the core component enabling gradients through complex nested functions</li>
+													<li>Training deep networks amounts to computing the chain rule over large Jacobians efficiently</li>
+													<li>Backpropagation provides an efficient implementation of the chain rule for neural networks</li>
+												</ul>
+											</section>
+
+											<section>
+												<p>
+													<a href="index.html" class="button">Back to Deep Learning Notes</a>
+													<a href="../index.html" class="button">Back to Academics</a>
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<ul class="contact">
+							<li><a class="icon brands fa-github" href="https://github.com/NumbersWithDan"><span class="label">Github</span></a></li>
+							<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/NumbersWithDan/"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>

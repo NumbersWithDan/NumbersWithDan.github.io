@@ -9,7 +9,7 @@
 		<title>NBA Player Salary Predictions: A Machine Learning Approach - Numbers With Dan</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Deep dive into building machine learning models to predict NBA player salaries. Explore feature engineering, model selection, and insights from analyzing performance metrics and market factors." />
+		<meta name="description" content="A detailed walkthrough of an NBA salary prediction project, from data prep and feature engineering to model comparison and player valuation." />
 		<meta name="keywords" content="NBA, salary prediction, machine learning, sports analytics, basketball, data science, player valuation, regression, feature engineering" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<style>
@@ -92,14 +92,13 @@
 											<section>
 												<h3>Introduction</h3>
 												<p>
-													What determines an NBA player's salary? Is it points per game? Advanced metrics like Player Efficiency Rating (PER)? 
-													Or perhaps market factors like team success and city size? In this project, I set out to build machine learning 
-													models that could predict NBA player salaries based on a comprehensive set of performance metrics and contextual factors.
+													NBA salaries are shaped by more than just points per game. Production matters, of course, but so do age, role,
+													team context, and the market a player happens to enter. In this project, I built a set of machine learning models
+													to see how much of a player's salary could be explained from the data.
 												</p>
 												<p>
-													This project combines my passion for basketball with data science, exploring how modern machine learning techniques 
-													can provide insights into the complex world of NBA contract negotiations. The goal wasn't just to build a predictive 
-													model, but to understand which factors truly drive player valuation in the modern NBA.
+													The goal was not only to make decent predictions. I also wanted to understand which signals mattered most and where
+													the model still struggled, because those misses often say something interesting about how teams value players.
 												</p>
 											</section>
 
@@ -508,26 +507,21 @@ models = {
 											<section>
 												<h3>Conclusion</h3>
 												<p>
-													This project successfully demonstrated that machine learning can provide valuable insights into NBA salary 
-													determination. The Gradient Boosting Regressor achieved strong predictive performance, explaining 71% of 
-													salary variance on the test set.
+													The final models did a solid job explaining salary variation, with Gradient Boosting performing best on the test set.
+													That was a good reminder that NBA salary is not driven by simple linear relationships.
 												</p>
 												<p>
-													The model comparison revealed that ensemble methods (Gradient Boosting, Random Forest) significantly 
-													outperformed linear models, highlighting the non-linear and complex relationships between player performance 
-													and compensation.
+													The model comparison also made the practical lesson pretty clear: context-heavy, nonlinear methods captured player value
+													better than simpler baselines. That fits the way teams actually make decisions, even if it makes interpretation a little harder.
 												</p>
 												<p>
-													Perhaps most interestingly, the model's application to identify overpaid and underpaid players revealed 
-													real-world contract dynamics. Cases like Kemba Walker showed how long-term contracts can create salary 
-													mismatches when player performance declines, while underpaid players demonstrated the value teams can 
-													find in young, efficient role players.
+													The most fun part of the project was applying the model to real players and looking for mismatches between predicted value
+													and actual salary. Those cases are rarely "gotchas," but they do make it easier to talk about age curves, contract timing,
+													and the premium teams place on certain roles.
 												</p>
 												<p>
-													The intersection of sports analytics and machine learning continues to offer fascinating opportunities to 
-													understand the business side of professional sports. This project demonstrates how data science can 
-													illuminate the complex dynamics of player valuation in the modern NBA, providing tools for teams, agents, 
-													and analysts to better understand market dynamics.
+													More than anything, this project gave me a structured way to think about a question basketball fans already argue about all the time:
+													what exactly are teams paying for?
 												</p>
 											</section>
 
@@ -571,9 +565,7 @@ models = {
 									<section>
 										<h2 class="major"><span>About This Project</span></h2>
 										<p>
-											This NBA salary prediction project combines sports analytics with machine learning to provide insights into 
-											player valuation and market dynamics. The models demonstrate how advanced metrics and contextual factors 
-											interact to determine player compensation in the modern NBA.
+											This project uses machine learning to turn a familiar basketball debate into a modeling problem: how much of a player's salary can the numbers explain?
 										</p>
 									</section>
 

@@ -9,7 +9,7 @@
 		<title>NBA Player Salary Predictions - Numbers With Dan</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Machine learning models for predicting NBA player salaries using performance metrics, advanced statistics, and market factors. Explore the intersection of sports analytics and business intelligence." />
+		<meta name="description" content="Machine learning models for predicting NBA player salaries using performance data, advanced metrics, and contextual factors." />
 		<meta name="keywords" content="NBA, salary prediction, machine learning, sports analytics, basketball, data science, player valuation" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
@@ -56,66 +56,63 @@
 
 											<header>
 												<h2>NBA Player Salary Predictions</h2>
-												<p>Machine learning models for predicting NBA player salaries</p>
+												<p>A machine learning project built to see how much of NBA salary can be explained by player data</p>
 											</header>
 
 											<section>
 												<span class="image featured"><img src="../images/Dirk_fadeaway.jpg" alt="Dirk Nowitzki fadeaway" /></span>
 												<h3>Project Overview</h3>
 												<p>
-													This project uses machine learning algorithms to predict NBA player salaries based on performance metrics. 
-													By analyzing historical data on player statistics, team success, and market conditions, I've developed 
-													models that can estimate player value and predict salary trends.
+													This project uses player performance data to estimate NBA salaries. The big question was simple:
+													if we look at production, efficiency, team context, and a few other signals, how close can a model get
+													to the way the league prices players?
 												</p>
 											</section>
 
 											<section>
 												<h3>Data Sources & Features</h3>
 												<p>
-													The model incorporates multiple data sources and features:
+													The model pulls from a mix of basketball and context variables, including:
 												</p>
 												<ul>
-													<li>Traditional statistics (points, rebounds, assists, etc.)</li>
-													<li>Advanced metrics (PER, WS/48, BPM, etc.)</li>
-													<li>Team performance and market size</li>
+													<li>Traditional statistics such as points, rebounds, and assists</li>
+													<li>Advanced metrics like PER, WS/48, and BPM</li>
+													<li>Team performance and market-related factors</li>
 													<li>Player age and experience</li>
-													<li>Position and role on team</li>
-													<li>Salary cap constraints</li>
+													<li>Position and role</li>
+													<li>Salary cap context</li>
 												</ul>
 											</section>
 
 											<section>
 												<h3>Modeling Approach</h3>
 												<p>
-													I employed several machine learning techniques including:
+													I compared several modeling approaches, balancing predictive strength with interpretability.
+													The goal was not just to produce a number, but to understand what kinds of signals mattered most.
 												</p>
 												<ul>
 													<li>Random Forest Regression for feature importance analysis</li>
 													<li>Gradient Boosting for improved prediction accuracy</li>
-													<li>Linear regression with regularization for interpretability</li>
-													<li>Time series analysis for salary trend prediction</li>
+													<li>Regularized linear models for a clearer baseline</li>
+													<li>Trend-aware approaches where longer-term salary patterns mattered</li>
 												</ul>
 											</section>
 
 											<section>
-												<h3>Key Insights</h3>
+												<h3>What The Model Showed</h3>
 												<p>
-													The analysis revealed several interesting patterns in NBA salary determination:
+													One of the more interesting takeaways was how much better advanced and context-aware variables performed
+													than surface-level box score numbers alone. Market value is still messy, but the model did a decent job of
+													showing which kinds of production tend to get paid.
 												</p>
-												<ul>
-													<li>Advanced metrics like PER and WS/48 have higher predictive power than traditional stats</li>
-													<li>Team success and market size significantly impact player salaries</li>
-													<li>Age shows a clear peak around 27-28 years old</li>
-													<li>Position scarcity affects salary premiums</li>
-												</ul>
 											</section>
 
 											<section>
 												<h3>Applications</h3>
 												<p>
-													This work demonstrates the intersection of sports analytics and business intelligence. 
-													The models can be used by teams for contract negotiations, by agents for client valuation, 
-													and by analysts for understanding market dynamics in professional sports.
+													This kind of model is useful as a comparison tool more than a final answer. It can help flag players who look
+													expensive or underpaid relative to the data, and it offers a structured way to talk about value in a league where
+													context always matters.
 												</p>
 											</section>
 
@@ -144,8 +141,7 @@
 									<section>
 										<h2 class="major"><span>About This Project</span></h2>
 										<p>
-											This project combines sports analytics with machine learning to provide insights into 
-											NBA salary dynamics and player valuation.
+											This project uses basketball data to ask a business question: what does the market seem to reward, and what does it miss?
 										</p>
 									</section>
 

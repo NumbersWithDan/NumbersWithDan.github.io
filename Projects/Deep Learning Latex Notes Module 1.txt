@@ -1,0 +1,600 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{DL notes Module 1}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and Statistical Preliminaries}
+
+\subsection{ \; What is Deep Learning?}
+
+\subsubsection*{Deep learning in everyday life}
+\begin{itemize}
+  \item Personal photo collections (online platforms) can be:
+  \begin{itemize}
+    \item categorized automatically,
+    \item used to recognize you in photos,
+    \item used to recognize family or friends (including tagged people).
+  \end{itemize}
+  \item Phone unlocking often uses a deep learning algorithm to infer whether the current user is the owner.
+  \item Chatbots and phone assistants increasingly rely on deep learning.
+  \item The lecturer claims that these technologies are now ``powered by deep learning'' at their core.
+\end{itemize}
+
+\subsubsection*{Definition-level statements}
+\begin{itemize}
+  \item ``Deep learning is machine learning that just works very, very well.''
+  \item It works well because it is \emph{scalable}.
+  \item It can learn from large amounts of data and learn \emph{representations} that generalize to new concepts.
+  \item The lecturer frames this representational generalization as something ``we have never had before in machine learning.'' \\
+  \textbf{[Unclear]} This is a strong historical claim; the transcript does not define a precise meaning for ``never had before.''
+\end{itemize}
+
+\subsubsection*{Relationship between statistics, machine learning, and deep learning}
+\begin{itemize}
+  \item Machine learning originated from statistics and was once treated as a subfield of statistics.
+  \item Machine learning is now described as a (somewhat) disjoint field from statistics.
+  \item Deep learning is a subfield of machine learning and still overlaps with statistics.
+  \item The largest overlap: all three use \emph{models} (statistical models) to predict or measure properties of data.
+\end{itemize}
+
+\subsubsection*{What models do in statistics vs.\ machine learning vs.\ deep learning}
+\begin{itemize}
+  \item In \textbf{statistics}, models are used to analyze and explain data (e.g., understand trends).
+  \item In \textbf{machine learning}, models are used to make predictions on unseen data.
+  \item In \textbf{deep learning}, machine learning is said to use a specific class of models:
+  \begin{itemize}
+    \item deep networks (also called neural networks),
+    \item described as ``much bigger'' and fitting data ``much, much better.''
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Example: weather data and statistical modeling}
+\begin{itemize}
+  \item Raw weather data: many temperature measurements over time (hourly, per-minute, across years).
+  \item Statistics can summarize data via transformations/aggregation (visual shown but not included in transcript):
+  \begin{itemize}
+    \item max/min temperature per day,
+    \item averaged over a month,
+    \item averaged over multiple years.
+  \end{itemize}
+  \item Some questions (e.g., whether winters are getting warmer) may be harder to visualize and may require models.
+  \item A \textbf{statistical model} is described as a function mapping input data $x$ to an output.
+  \begin{itemize}
+    \item Example mapping: $x$ could be the \emph{date} of measurement, output could be the \emph{temperature}.
+  \end{itemize}
+  \item A special feature: the function is \emph{parametric}, with parameters denoted $\theta$.
+  \item Parameters $\theta$ allow the model to adjust to and fit the data.
+\end{itemize}
+
+\subsubsection*{Historical sketch of deep learning}
+\begin{itemize}
+  \item Early work: perceptron paper; lecturer dates this era to ``about 60--70 years ago,'' and mentions 1957.
+  \item Early enthusiasm: belief that machine learning would solve almost any problem within about 10 years.
+  \item Constraints then:
+  \begin{itemize}
+    \item limited data,
+    \item extremely limited compute,
+    \item models did not get very big.
+  \end{itemize}
+  \item As limitations became clear:
+  \begin{itemize}
+    \item funding decreased,
+    \item a book on perceptrons attempted to discredit early perceptron-based methods.
+  \end{itemize}
+  \item Result: an ``AI winter'' lasting almost 20 years.
+  \item Revival: backpropagation was ``discovered for the final time'' (lecturer phrasing) and enabled training bigger/more interesting neural networks.
+  \item 1990s--early 2000s: classical machine learning described as being ``a few years ahead'' of neural networks/deep learning.
+  \item Around 2005:
+  \begin{itemize}
+    \item ``neural networks'' in a paper title at top ML venues was said to increase chances of rejection (per lecturer anecdote),
+    \item a group rebranded ``neural networks'' as ``deep learning'',
+    \item lecturer claims the term ``deep learning'' did not exist before 2005.
+  \end{itemize}
+  \item Progress milestones (as stated):
+  \begin{itemize}
+    \item By 2010: state of the art in speech recognition.
+    \item By 2012: state of the art in image recognition (computer vision).
+    \item By 2014: almost the entire computer vision field used deep networks.
+    \item By 2017: deep learning took over natural language processing.
+  \end{itemize}
+  \item Current claim: there is no ML field where deep learning is not at least a competitor among models used.
+\end{itemize}
+
+\subsubsection*{TL;DR}
+\begin{itemize}
+  \item Deep learning is a subfield of machine learning studying deep networks.
+  \item Deep networks are described as powerful and generalizable models that can fit immense amounts of data.
+\end{itemize}
+
+\paragraph{[Contextual Clarification]}
+The transcript references a visualization ``on the side'' showing temperature summaries and a plot for linear regression/classification later. Since the slides are missing:
+\begin{itemize}
+  \item This likely refers to standard plots:
+  \begin{itemize}
+    \item a summary plot of daily max/min temperatures across months/years,
+    \item a scatter plot with a fitted line for linear regression,
+    \item a decision boundary or class probability depiction for classification.
+  \end{itemize}
+  \item This is inferred from the lecturer's verbal description; no specific plot details (axes, scales, exact values) are present in the transcript.
+\end{itemize}
+
+\paragraph{Unclear or ambiguous points (1.1)}
+\begin{itemize}
+  \item The lecturer says early papers were ``in 1970, uh, in 1957'' --- likely a transcription error or self-correction.
+  \item ``Backpropagation was discovered for the final time'' is unclear wording; the transcript does not specify what earlier ``discoveries'' refer to.
+  \item The claim ``representations ... which we have never had before in machine learning'' is not technically specified in the transcript.
+\end{itemize}
+
+
+
+\subsection{\; Statistical Notation and Concepts for Deep Learning}
+
+\subsubsection*{Motivation: why statistics}
+\begin{itemize}
+  \item Understanding deep learning is helped by understanding statistics because:
+  \begin{itemize}
+    \item machine learning was born out of statistics,
+    \item machine learning inherited much of statistics' notation (with changes),
+    \item there is more ``abuse of notation'' in ML/DL than in statistics (lecturer claim).
+  \end{itemize}
+  \item The lecturer frames this section as a notation review, not a complete statistics guide.
+\end{itemize}
+
+\subsubsection*{Randomness and the coin toss}
+\begin{itemize}
+  \item Example: toss a coin (heads/tails). We do not know the outcome in advance.
+  \item Physics viewpoint: in principle one might predict it, but in practice we cannot perfectly observe:
+  \begin{itemize}
+    \item the exact weight distribution of the coin,
+    \item where the hand applies force,
+    \item the exact force magnitude and other conditions.
+  \end{itemize}
+  \item Because of imperfect observation, the process \emph{appears random}.
+  \item If the coin is unbiased/fair, there is roughly a 50/50 chance of heads vs.\ tails.
+  \item Lecturer caveat: coin toss is not exactly 50/50; the initially-top side has slightly higher chance to be on top again due to coin-toss physics. (Mentions existence of a physics paper and large-scale experiments.)
+\end{itemize}
+
+\subsubsection*{Basic probability notation}
+\begin{itemize}
+  \item Random variable: denoted $x$.
+  \item A specific value (outcome): denoted $a$.
+  \item ``$x$ taking value $a$'' is an \emph{event}.
+  \item The probability of that event: written $p(x)$ in the lecturer's notation discussion. \\
+  \textbf{[Unclear]} The transcript alternates between talking about $p$ as a function and expressions like ``probability of a certain event''; it does not provide a single explicit canonical expression like $p(x=a)$.
+\end{itemize}
+
+\subsubsection*{Discrete vs.\ continuous outcomes}
+\begin{itemize}
+  \item Discrete example: heads/tails (categorical outcomes).
+  \item Continuous example: angle $\alpha$ at which the coin lands.
+  \item Probability of landing at \emph{exactly} $\alpha$ is described as not defined / effectively zero.
+  \item Use cumulative distribution ideas instead:
+  \begin{itemize}
+    \item probability of landing between $40^\circ$ and $50^\circ$ is meaningful.
+  \end{itemize}
+  \item Probability density described as:
+  \[
+    \text{(probability of landing in a range)} \;/\; \text{(length of the range)}.
+  \]
+\end{itemize}
+
+\subsubsection*{Unified notation convention for this class }
+\begin{itemize}
+  \item No distinction will be made between:
+  \begin{itemize}
+    \item probability mass (discrete),
+    \item probability density (continuous).
+  \end{itemize}
+  \item The symbol $p(x)$ will be used for both.
+  \item $x$ may be discrete or continuous; the course will ``not care about which one it is'' (lecturer phrasing).
+\end{itemize}
+
+\subsubsection*{Basic properties of probabilities / densities}
+\begin{itemize}
+  \item Non-negativity:
+  \[
+    p(x) \ge 0.
+  \]
+  \item Discrete normalization:
+  \[
+    \sum_x p(x) = 1.
+  \]
+  \item Continuous normalization:
+  \[
+    \int p(x)\,dx = 1.
+  \]
+  \item $p$ is a function:
+  \begin{itemize}
+    \item discrete: maps outcomes to values in $[0,1]$,
+    \item continuous: maps real values to non-negative real values (no upper bound stated).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Distributions as a recurring tool}
+\begin{itemize}
+  \item Distributions will be used to:
+  \begin{itemize}
+    \item describe data,
+    \item describe outputs of models,
+    \item reason about labels attached to data.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Examples of ``distributions''}
+\begin{itemize}
+  \item The visual world you observe daily can be viewed as a probability distribution over visual stimuli:
+  \begin{itemize}
+    \item common sights correspond to high-probability events,
+    \item novel sights correspond to low-probability events.
+  \end{itemize}
+  \item Weather/temperature over time can also be viewed as a distribution.
+\end{itemize}
+
+\subsubsection*{Three categories of distributions}
+\begin{itemize}
+  \item \textbf{Data-generating distribution}: the real-world process (e.g., climate/weather system).
+  \item \textbf{Empirical distribution}: what we observe as samples (e.g., measured weather data).
+  \item \textbf{Model distribution}: distribution implied by a model fit to the empirical data.
+  \item In general, these three are not the same (lecturer claim), though simple examples can make them equal.
+\end{itemize}
+
+\subsubsection*{Expectation}
+\begin{itemize}
+  \item Expectation of a function $f(x)$ under distribution $p$:
+  \begin{itemize}
+    \item Discrete case: weighted sum over outcomes.
+    \item Continuous case: replace sum with an integral.
+  \end{itemize}
+  \item Unified notation: the same expectation symbol is used for both; interpretation depends on whether $x$ is discrete or continuous.
+  \item Notational shortening conventions (as stated):
+  \begin{itemize}
+    \item may drop the $x$ in the subscript if implied,
+    \item may drop the explicit distribution $p$ if clear from context,
+    \item may drop the $x$ inside brackets if function arguments are clear,
+    \item a very short form exists but is rarely used.
+  \end{itemize}
+  \item Linearity properties:
+  \[
+    \mathbb{E}[f+g] = \mathbb{E}[f] + \mathbb{E}[g],
+    \qquad
+    \mathbb{E}[c f] = c\,\mathbb{E}[f].
+  \]
+\end{itemize}
+
+\subsubsection*{Mean and variance}
+\begin{itemize}
+  \item Mean: the average value a distribution takes (illustrated via Gaussian center in the missing slide).
+  \item Variance: the spread of values in a distribution.
+  \item Variance caveats under unified notation:
+  \begin{itemize}
+    \item Discrete: variance is finite if all possible values are finite.
+    \item Continuous: can construct distributions with infinite variance.
+    \item The lecturer notes this matters mainly for proofs.
+  \end{itemize}
+  \item Additional caveat:
+  \begin{itemize}
+    \item Discrete probabilities satisfy $p(x)\le 1$.
+    \item Continuous \emph{densities} can exceed $1$ (coding pitfall if one assumes otherwise).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Sampling}
+\begin{itemize}
+  \item Sampling = drawing outcomes from a distribution:
+  \begin{itemize}
+    \item rolling a fair die,
+    \item typing on a keyboard (sometimes hitting the wrong key),
+    \item typing on a phone (even noisier),
+    \item taking a photo as a snapshot sample of the visual world.
+  \end{itemize}
+  \item Samples are always biased in the sense that:
+  \begin{itemize}
+    \item a finite number of samples will not exactly match the true distribution,
+    \item exact matching occurs only in the limit of infinitely many samples.
+  \end{itemize}
+  \item Example: for 10 coin flips, getting exactly 5 heads and 5 tails is said to be ``relatively small'' probability, and repeating experiments yields wide variation.
+\end{itemize}
+
+\subsubsection*{Statistical models}
+\begin{itemize}
+  \item A statistical model: a function with parameters $\theta$ mapping inputs to outputs.
+  \item Regression:
+  \begin{itemize}
+    \item maps real-valued inputs to real-valued outputs,
+    \item slide example: linear regression with points and a fitted line (blue line mentioned).
+  \end{itemize}
+  \item Classification:
+  \begin{itemize}
+    \item maps inputs to class outputs or probabilities over classes,
+    \item described as mapping real values to probabilities over discrete events,
+    \item probabilities are positive and sum to one.
+  \end{itemize}
+  \item Summary statement: models are typically ``real values to real values'' or ``real values to probabilities'' (lecturer phrasing).
+\end{itemize}
+
+\subsubsection*{Learning from data (data and labels)}
+\begin{itemize}
+  \item In machine learning, the goal is to find parameters $\theta$ given data.
+  \item Data viewed as samples from a data-generating distribution (e.g., weather system).
+  \item Two kinds of data:
+  \begin{itemize}
+    \item unlabeled data (e.g., internet text/images; raw photo collections),
+    \item labeled data (data with labels attached; e.g., photo tags/preferences; date as input and temperature as label).
+  \end{itemize}
+  \item Course emphasis: mostly labeled data.
+  \item Goal framing: learn a model that, on new data, infers the labels the new data should have.
+\end{itemize}
+
+\subsubsection*{Summary of the statistics review}
+\begin{itemize}
+  \item A statistical model learns to predict $y$ from input $x$ using parameters $\theta$.
+  \item Expectations are weighted averages under $p(x)$.
+  \item Mean and variance measure center and deviation/spread of a distribution.
+\end{itemize}
+
+
+\subsection{ \; Linear Algebra Basics for Deep Learning}
+
+\subsubsection*{Purpose of linear algebra in this course}
+\begin{itemize}
+  \item Linear algebra in deep learning serves a simple purpose: it is a \emph{language} to express many mathematical operations at once.
+  \item It enables compact mathematical notation and compact code for large-scale computations.
+  \item Emphasis is on notation and computation (not geometric interpretations).
+\end{itemize}
+
+\subsubsection*{Vectors}
+\begin{itemize}
+  \item A vector is a 1D array of numbers (analogy: a Python list of numbers).
+  \item Notation: bold lowercase letter, e.g.\ $\mathbf{v}$.
+  \item Elements: $\mathbf{v} = (v_1,\dots,v_n)$ (lecturer enumerates $v_1$ to $v_n$).
+\end{itemize}
+
+\paragraph{Elementwise operations on vectors }
+For two vectors of the same size (e.g.\ $\mathbf{v}$ and $\mathbf{w}$):
+\begin{itemize}
+  \item addition and subtraction are elementwise,
+  \item multiplication and division can also be elementwise.
+\end{itemize}
+
+\paragraph{Notation convention}
+\begin{itemize}
+  \item Elementwise multiplication is denoted by a dot (``$\cdot$'').
+  \item Matrix--vector or matrix--matrix multiplication is written \emph{without} a dot.
+  \item Division (either using a division symbol or fractional notation) refers to \emph{elementwise division}.
+\end{itemize}
+
+\subsubsection*{Matrices}
+\begin{itemize}
+  \item A matrix is a 2D array of numbers.
+  \item Rows and columns are referenced explicitly:
+  \begin{itemize}
+    \item an entry can be identified by its row and column position.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Transpose}
+\begin{itemize}
+  \item Transposing a matrix ``mirrors it along its diagonal'' (swaps $(i,j)$ with $(j,i)$).
+  \item Transposing a vector converts a column vector into a row vector:
+  \begin{itemize}
+    \item column vector $\to$ row vector (numbers ``arranged one behind the other'').
+  \end{itemize}
+  \item This becomes important for gradient notation because gradients are often written as row vectors.
+\end{itemize}
+
+\subsubsection*{Matrix multiplication}
+\begin{itemize}
+  \item Given two matrices $A$ and $B$, produce an output matrix $C$.
+  \item Dimension compatibility rule (as stated):
+  \begin{itemize}
+    \item number of rows in $B$ must match number of columns in $A$.
+  \end{itemize}
+  \item Computation rule:
+  \begin{itemize}
+    \item take each row of $A$ and each column of $B$,
+    \item multiply corresponding elements (elementwise),
+    \item sum the products to get an entry of $C$.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Example dimensions}
+\begin{itemize}
+  \item $A \in \mathbb{R}^{2 \times 4}$ and $B \in \mathbb{R}^{4 \times 3}$ produce $C \in \mathbb{R}^{2 \times 3}$.
+  \item ``The 4 needs to match''; the 2 and 3 appear in the output dimensions.
+\end{itemize}
+
+\subsubsection*{Matrix--vector multiplication}
+\begin{itemize}
+  \item Vectors are column vectors by default.
+  \item If $M$ is a matrix and $\mathbf{v}$ is a (column) vector, then $M\mathbf{v}$ produces another (column) vector.
+  \item For row vectors, the row vector must be multiplied in front:
+  \begin{itemize}
+    \item i.e.\ use $\mathbf{v}^\top$ on the left
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Dot product / inner product}
+\begin{itemize}
+  \item Dot/inner product described as:
+  \begin{itemize}
+    \item a row vector multiplied by a column vector produces a scalar (``a $1\times 1$ matrix'').
+  \end{itemize}
+  \item Outer product described as:
+  \begin{itemize}
+    \item a column vector multiplied by a row vector produces a matrix.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Norms}
+\begin{itemize}
+  \item Vector norm (Euclidean norm) described as:
+  \begin{itemize}
+    \item square the elements, sum them, then take the square root.
+  \end{itemize}
+  \item Matrix norm:
+  \begin{itemize}
+    \item sum of squares of all matrix elements (summing over rows and columns).
+  \end{itemize}
+  \item The lecturer notes a geometric interpretation for vectors (length in space) but says the course will focus on computation.
+\end{itemize}
+
+\subsubsection*{Example: centering data (linear algebra vs.\ raw Python)}
+\begin{itemize}
+  \item Input: values $a_1,\dots,a_n$.
+  \item Compute $\mathbf{b}$ as $\mathbf{a}$ minus the average of all $a_i$.
+  \item Mean:
+  \begin{itemize}
+    \item $\mu$ is the mean (average) of all $a_i$.
+  \end{itemize}
+  \item Raw Python approach:
+  \begin{itemize}
+    \item loop to sum entries,
+    \item divide by length to compute mean,
+    \item loop again to construct $\mathbf{b}$ by subtracting the mean from each entry.
+  \end{itemize}
+  \item Linear algebra expression:
+  \begin{itemize}
+    \item $\mathbf{b} = \mathbf{a} - \dfrac{\mathbf{a}\cdot \mathbf{1}}{n}$,
+    \item where $\mathbf{1}$ is a vector of ones and $\mathbf{a}\cdot \mathbf{1}$ gives the sum of all $a_i$.
+  \end{itemize}
+  \item PyTorch expression:
+  \begin{itemize}
+    \item $\mathbf{b} = \mathbf{a} - \mathrm{mean}(\mathbf{a})$,
+    \item where \texttt{mean} computes the average of the values.
+  \end{itemize}
+\end{itemize}
+
+
+
+
+\subsection{ \; Tensors}
+
+\subsubsection*{Motivation and definition }
+\begin{itemize}
+  \item Tensors extend linear algebra to represent higher-dimensional data beyond vectors (1D) and matrices (2D).
+  \item A tensor is an $n$-dimensional array (ndarray) of numbers.
+  \item Key attributes:
+  \begin{itemize}
+    \item \textbf{shape}: size along each dimension,
+    \item \textbf{number of dimensions}: the length of the shape.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Examples of tensor dimensionality}
+\begin{itemize}
+  \item 1D tensor: vector.
+  \item 2D tensor: matrix.
+  \item 3D tensor:
+  \begin{itemize}
+    \item image,
+    \item spectrogram of a waveform (audio processing).
+  \end{itemize}
+  \item 4D tensor:
+  \begin{itemize}
+    \item video (adds a time dimension),
+    \item ``other extended time series''.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Image/video dimensions}
+\begin{itemize}
+  \item Image has three dimensions:
+  \begin{itemize}
+    \item height,
+    \item width,
+    \item number of channels.
+  \end{itemize}
+  \item RGB images: number of channels is $3$.
+  \item Hyperspectral images: number of channels can be $20$--$30$ (as stated).
+  \item Video adds an additional time dimension.
+\end{itemize}
+
+\subsubsection*{PyTorch-specific notes on tensors}
+\begin{itemize}
+  \item In PyTorch, tensors are the basic building block for representing values and data.
+  \item Tensors have:
+  \begin{itemize}
+    \item shape (dimension sizes + number of dimensions),
+    \item dtype (data type): e.g.\ integer, floating point, and selectable precision.
+  \end{itemize}
+  \item Number of dimensions is the length of the shape list.
+\end{itemize}
+
+
+\subsection{ \; Gradients, Jacobians, and the Chain Rule for Deep Networks}
+
+\subsubsection*{Motivation: optimization via gradients (as stated)}
+\begin{itemize}
+  \item Key remaining topic: how to optimize (train) deep networks.
+  \item One perspective: a deep network is a gigantic nested function:
+  \[
+    \text{functions inside functions inside functions}.
+  \]
+  \item Training deep networks centers on computing partial derivatives / gradients of nested functions.
+\end{itemize}
+
+\subsubsection*{Gradients depend on input/output dimensions}
+The lecturer distinguishes three cases based on the dimensions of the input and output of a function.
+
+\paragraph{Case 1: scalar $\to$ scalar}
+\begin{itemize}
+  \item A partial derivative for a function with scalar input and scalar output is a scalar.
+\end{itemize}
+
+\paragraph{Case 2: vector $\to$ scalar}
+Let $f:\mathbb{R}^n \to \mathbb{R}$.
+\begin{itemize}
+  \item The gradient of $f$ w.r.t.\ its input vector $\mathbf{x}$ is a vector.
+  \item Notation: ``the gradient of $f$ with respect to its input vector $\mathbf{x}$'' 
+\end{itemize}
+
+\paragraph{Case 3: vector $\to$ vector (many inputs to many outputs)}
+Let $f:\mathbb{R}^n \to \mathbb{R}^m$.
+\begin{itemize}
+  \item The derivative object becomes a matrix with one partial derivative per (output, input) pair.
+  \item This matrix is called the \textbf{Jacobian}.
+  \item Orientation (as described verbally):
+  \begin{itemize}
+    \item columns correspond to the input dimension,
+    \item rows correspond to the output dimension.
+  \end{itemize}
+\end{itemize}
+
+
+\subsubsection*{Chain rule for nested functions}
+Consider two functions:
+\begin{itemize}
+  \item $g_1$ maps $n$ values to $m$ values,
+  \item $g_2$ maps $m$ values to $k$ values.
+\end{itemize}
+
+\begin{itemize}
+  \item Goal: compute the derivative (Jacobian) of the composition (nested function).
+  \item Chain rule statement:
+  \begin{itemize}
+    \item compute the Jacobian of the inner function,
+    \item compute the Jacobian of the outer function evaluated at the inner function's output,
+    \item multiply the Jacobians (matrix multiplication) to obtain the Jacobian of the composition.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Backpropagation}
+\begin{itemize}
+  \item Backpropagation is described as ``essentially the chain rule''
+  \item More precisely: chain rule computed in a very specific way (details deferred to later).
+\end{itemize}
+
+\subsubsection*{Takeaways}
+\begin{itemize}
+  \item Gradients are usually row vectors (lecturer emphasis).
+  \item The chain rule is the core component enabling gradients through complex nested functions.
+  \item Training deep networks amounts to computing chain rule over large Jacobians efficiently.
+  \item The chain rule is ``really just the matrix product of Jacobians or gradients of individual functions.''
+\end{itemize}
+
+
+\end{document}

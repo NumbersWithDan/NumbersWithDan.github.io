@@ -26,6 +26,31 @@
 			}, 100);
 		});
 
+	// Zen scroll fade-in for content sections.
+		$window.on('load', function() {
+			var fadeSelectors = '#main .box.highlight, #main .box.features, #main .box.feature, #main .box.blog, #main .box.post, #main .box.page-content, #main .container .row > .col-12 > section';
+			var fadeElements = document.querySelectorAll(fadeSelectors);
+			if (fadeElements.length === 0) {
+				fadeElements = document.querySelectorAll('#main .box, #main > .container .row > *');
+			}
+			fadeElements.forEach(function(el, i) {
+				el.classList.add('fade-in');
+				el.style.transitionDelay = Math.min(i * 0.06, 0.3) + 's';
+			});
+			if ('IntersectionObserver' in window) {
+				var observer = new IntersectionObserver(function(entries) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+						}
+					});
+				}, { rootMargin: '0px 0px -40px 0px', threshold: 0.02 });
+				fadeElements.forEach(function(el) { observer.observe(el); });
+			} else {
+				fadeElements.forEach(function(el) { el.classList.add('visible'); });
+			}
+		});
+
 	// Dropdowns.
 		$('#nav > ul').dropotron({
 			mode: 'fade',
