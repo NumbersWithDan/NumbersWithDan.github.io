@@ -2625,6 +2625,12 @@ input, select, textarea {
 			color: inherit;
 		}
 
+		#copyright a.secret-link {
+			text-decoration: none;
+			border-bottom: 0;
+			cursor: default;
+		}
+
 		#copyright .menu {
 			margin: 0;
 		}
