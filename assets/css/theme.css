@@ -282,7 +282,8 @@
 			background: var(--border);
 		}
 
-		h2.major span {
+		h2.major span,
+		#footer h2.major span {
 			background: none;
 			top: 0;
 			padding: 0;
@@ -862,6 +863,11 @@
 	.steps-list {
 		background: var(--muted) !important;
 	}
+
+		.steps-list .convergence-result {
+			background: var(--callout-good);
+			color: var(--foreground);
+		}
 
 		.steps-list * {
 			border-color: var(--border) !important;

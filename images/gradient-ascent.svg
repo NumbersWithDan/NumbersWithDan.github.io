@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#09191a"/>
+  <g stroke="#173536" stroke-width="1">
+    <path d="M0 90H800M0 180H800M0 270H800M0 360H800M100 0V450M200 0V450M300 0V450M400 0V450M500 0V450M600 0V450M700 0V450"/>
+  </g>
+  <g fill="#87c7b5">
+    <rect x="90" y="370" width="145" height="12" rx="5"/>
+    <rect x="290" y="295" width="115" height="12" rx="5"/>
+    <rect x="470" y="220" width="110" height="12" rx="5"/>
+    <rect x="640" y="145" width="110" height="12" rx="5"/>
+  </g>
+  <path d="M185 354Q220 180 338 270" fill="none" stroke="#5eead4" stroke-width="3" stroke-dasharray="9 9"/>
+  <g transform="translate(323 243)">
+    <rect width="32" height="34" rx="8" fill="#e0ebe4"/>
+    <rect x="6" y="9" width="20" height="10" rx="4" fill="#0d4c4c"/>
+    <path d="M16 0V-8" stroke="#e0ebe4" stroke-width="3"/>
+    <circle cx="16" cy="-10" r="4" fill="#5eead4"/>
+  </g>
+  <text x="48" y="65" fill="#e0ebe4" font-family="system-ui, sans-serif" font-size="37" font-weight="700">GRADIENT ASCENT</text>
+  <text x="50" y="100" fill="#92a39e" font-family="system-ui, sans-serif" font-size="19">CHOOSE. AIM. COMMIT. CLIMB.</text>
+</svg>

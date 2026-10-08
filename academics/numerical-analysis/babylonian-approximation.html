@@ -564,7 +564,7 @@
 							// Add final result
 							const finalStep = this.steps[this.steps.length - 1];
 							const finalError = Math.abs(finalStep.x - Math.sqrt(this.S));
-							stepsHTML += `<div style='margin-top: 8px; padding: 5px; background: #e8f5e8; border-radius: 3px; font-weight: bold;'>`;
+							stepsHTML += `<div class='convergence-result' style='margin-top: 8px; padding: 5px; border-radius: 3px; font-weight: bold;'>`;
 							stepsHTML += `Final: √2 ≈ ${finalStep.x.toFixed(4)} (Error: ${finalError.toFixed(4)})`;
 							stepsHTML += `</div>`;
 							
