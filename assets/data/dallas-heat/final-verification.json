@@ -1,0 +1,449 @@
+{
+  "scope": "Finished training-table and saved-model review; not complete raw-feature reconstruction",
+  "original_observations": 19491,
+  "final_training_rows": 21342,
+  "extra_join_rows": 1851,
+  "observations_with_multiple_matches": 1820,
+  "max_matches": 4,
+  "max_coordinate_alignment_error_m": 9.313225746154785e-10,
+  "targets_match_original_by_location": true,
+  "feature_names": [
+    "Band_1",
+    "Band_2",
+    "Band_3",
+    "Band_7",
+    "Band_10",
+    "Band_11",
+    "NDVI",
+    "NDBI",
+    "LOWINCPCT",
+    "OVER64PCT",
+    "UNEMPPCT",
+    "PRE1960PCT",
+    "PM25",
+    "PTRAF",
+    "Distance_to_Park",
+    "Distance_to_Lake",
+    "Distance_to_River",
+    "MdSalesPr",
+    "CoefVar",
+    "PHHOO",
+    "VptResVac",
+    "PPermNCUnt",
+    "PRehabPerm",
+    "PFclOO1517",
+    "PCVLnRsPr",
+    "PPubSubAll",
+    "PAPerm",
+    "MVACluster_A",
+    "MVACluster_B",
+    "MVACluster_C",
+    "MVACluster_D",
+    "MVACluster_E",
+    "MVACluster_F",
+    "MVACluster_G",
+    "MVACluster_H",
+    "MVACluster_I",
+    "MVACluster_NA"
+  ],
+  "missing_by_feature": {
+    "Band_1": 0,
+    "Band_2": 0,
+    "Band_3": 0,
+    "Band_7": 0,
+    "Band_10": 0,
+    "Band_11": 0,
+    "NDVI": 0,
+    "NDBI": 0,
+    "LOWINCPCT": 0,
+    "OVER64PCT": 0,
+    "UNEMPPCT": 0,
+    "PRE1960PCT": 0,
+    "PM25": 0,
+    "PTRAF": 273,
+    "Distance_to_Park": 0,
+    "Distance_to_Lake": 0,
+    "Distance_to_River": 0,
+    "MdSalesPr": 9741,
+    "CoefVar": 9741,
+    "PHHOO": 9741,
+    "VptResVac": 9741,
+    "PPermNCUnt": 9741,
+    "PRehabPerm": 9741,
+    "PFclOO1517": 9741,
+    "PCVLnRsPr": 9741,
+    "PPubSubAll": 9741,
+    "PAPerm": 9741,
+    "MVACluster_A": 0,
+    "MVACluster_B": 0,
+    "MVACluster_C": 0,
+    "MVACluster_D": 0,
+    "MVACluster_E": 0,
+    "MVACluster_F": 0,
+    "MVACluster_G": 0,
+    "MVACluster_H": 0,
+    "MVACluster_I": 0,
+    "MVACluster_NA": 0
+  },
+  "saved_model_parameters": {
+    "objective": "reg:squarederror",
+    "colsample_bytree": 0.9,
+    "enable_categorical": false,
+    "gamma": 0.22499999999999998,
+    "learning_rate": 0.03111111111111111,
+    "max_depth": 9,
+    "min_child_weight": 3,
+    "n_estimators": 400,
+    "n_jobs": 2,
+    "random_state": 42,
+    "reg_alpha": 0.0,
+    "reg_lambda": 2.0,
+    "subsample": 0.7,
+    "tree_method": "hist"
+  },
+  "versions": {
+    "python": "3.11.4",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.5.1",
+    "xgboost": "2.1.3",
+    "matplotlib": "3.9.2"
+  },
+  "sha256": {
+    "final_uhi_data.dbf": "1463b658d76de0855fb314c55ac362f3ff51189ea298a079c06d24ff667ea7ca",
+    "final_uhi_data.shp": "8981ba3fae6cd2599ce325e017be60e09ca545dca793fef1f99f0fbfe7a90ce7",
+    "final_uhi_data.prj": "db708912d14ad1ab84ec61604c667fdc25968fc1a35e5c56cd146d3f45a3c441",
+    "Data\\UHI\\Shape files\\af_trav.dbf": "b13e3919d08d22954e430b69fcea10ec9490cb82856a9f7c67754d4b2345d9cd",
+    "Data\\UHI\\Shape files\\af_trav.shp": "b4ac8b082d0efe29ba033033a67aa38585fe7a08c78e70d38852ab329a0208c4",
+    "Models\\final_uhi_model.joblib": "e0e840236f984dc266bdc106fdf73f55b56bed8a7c3f94b758fa28f53c8a4e1b",
+    "UHI Model Final-model comps.ipynb": "11ea381f72ffbc73b06504fe5baf57619e5ccd82bbca38b6bb00549458b6d4c8",
+    ".ipynb_checkpoints\\Full City Prediction-checkpoint.ipynb": "69202c4612aab199ea7301e707db9a99a569eeefe5868ece099ccdae033f367b",
+    "Final Report_Final.docx": "fde60070922a66990605db5f6d49c0fb65b8d3e10c8579d2201ec0f56f083f05"
+  },
+  "saved_model_in_sample_only": {
+    "r2": 0.9522615437384395,
+    "mae_f": 0.18443245032936892,
+    "warning": "Training fit only, not held-out test performance"
+  },
+  "legacy_group_count": 19491,
+  "legacy_reproduction": {
+    "fold_r2": [
+      0.9110647337089826,
+      0.9085922398734966,
+      0.9050959783691265,
+      0.9062062325775821,
+      0.9104992853991314,
+      0.9060948733279062,
+      0.9151869154886912,
+      0.9044820275569461,
+      0.9068962794297604,
+      0.9083951753364025
+    ],
+    "mean_fold_r2": 0.9082513741068026,
+    "notebook_saved_mean_r2": 0.906482975153126
+  },
+  "grid_group_count": 74,
+  "random_observation_groups": {
+    "folds": [
+      {
+        "fold": 1,
+        "train_rows": 17096,
+        "test_rows": 4246,
+        "mae_f": 0.27646994296022787,
+        "r2": 0.8899179674788803,
+        "mean_baseline_mae_f": 0.8712343211103456
+      },
+      {
+        "fold": 2,
+        "train_rows": 17032,
+        "test_rows": 4310,
+        "mae_f": 0.27214714553960884,
+        "r2": 0.8899282520645345,
+        "mean_baseline_mae_f": 0.8703726629777603
+      },
+      {
+        "fold": 3,
+        "train_rows": 17081,
+        "test_rows": 4261,
+        "mae_f": 0.27202823809197524,
+        "r2": 0.8940558298176693,
+        "mean_baseline_mae_f": 0.8790850306887719
+      },
+      {
+        "fold": 4,
+        "train_rows": 17069,
+        "test_rows": 4273,
+        "mae_f": 0.274258224646495,
+        "r2": 0.8927784924625115,
+        "mean_baseline_mae_f": 0.8724806443617057
+      },
+      {
+        "fold": 5,
+        "train_rows": 17090,
+        "test_rows": 4252,
+        "mae_f": 0.27356484310227785,
+        "r2": 0.8947977074437755,
+        "mean_baseline_mae_f": 0.870436891387733
+      }
+    ],
+    "mean_fold_mae_f": 0.27369367886811696,
+    "mean_fold_r2": 0.8922956498534742,
+    "mean_fold_baseline_mae_f": 0.8727219101052632,
+    "pooled_mae_f": 0.2736938213063752,
+    "pooled_r2": 0.8923185810028033
+  },
+  "spatial_2km": {
+    "folds": [
+      {
+        "fold": 1,
+        "train_rows": 17071,
+        "test_rows": 4271,
+        "mae_f": 0.8551961440899608,
+        "r2": -0.280833858712336,
+        "mean_baseline_mae_f": 0.759464739249442
+      },
+      {
+        "fold": 2,
+        "train_rows": 17072,
+        "test_rows": 4270,
+        "mae_f": 0.7649872920375321,
+        "r2": -0.1209666735018835,
+        "mean_baseline_mae_f": 0.7387338512047099
+      },
+      {
+        "fold": 3,
+        "train_rows": 17077,
+        "test_rows": 4265,
+        "mae_f": 0.9461698925453789,
+        "r2": 0.05321797027854669,
+        "mean_baseline_mae_f": 1.004534442493395
+      },
+      {
+        "fold": 4,
+        "train_rows": 17079,
+        "test_rows": 4263,
+        "mae_f": 0.9107468160127374,
+        "r2": -0.16637585879861727,
+        "mean_baseline_mae_f": 0.9103070947806319
+      },
+      {
+        "fold": 5,
+        "train_rows": 17069,
+        "test_rows": 4273,
+        "mae_f": 0.8643713062078541,
+        "r2": 0.15702403961877986,
+        "mean_baseline_mae_f": 1.0041523827336958
+      }
+    ],
+    "mean_fold_mae_f": 0.8682942901786926,
+    "mean_fold_r2": -0.07158687622310204,
+    "mean_fold_baseline_mae_f": 0.883438502092375,
+    "pooled_mae_f": 0.8674237937249417,
+    "pooled_r2": 9.045329110179967e-05
+  },
+  "buffered_north_south_regions": {
+    "folds": [
+      {
+        "fold": 1,
+        "train_rows": 16226,
+        "test_rows": 4487,
+        "mae_f": 0.9230554709019106,
+        "r2": -0.24527845421176164,
+        "mean_baseline_mae_f": 0.9260745636893226
+      },
+      {
+        "fold": 2,
+        "train_rows": 15479,
+        "test_rows": 4539,
+        "mae_f": 0.9159778163068941,
+        "r2": -0.1560839422505187,
+        "mean_baseline_mae_f": 0.8457779131082487
+      },
+      {
+        "fold": 3,
+        "train_rows": 16102,
+        "test_rows": 4244,
+        "mae_f": 1.0251405405716874,
+        "r2": -0.27820120359173983,
+        "mean_baseline_mae_f": 0.9139689726896281
+      },
+      {
+        "fold": 4,
+        "train_rows": 16470,
+        "test_rows": 4079,
+        "mae_f": 1.0170091974484485,
+        "r2": -0.4158348743475244,
+        "mean_baseline_mae_f": 0.8974910189648966
+      },
+      {
+        "fold": 5,
+        "train_rows": 17063,
+        "test_rows": 3993,
+        "mae_f": 0.8582102889584051,
+        "r2": -0.07212525674413373,
+        "mean_baseline_mae_f": 0.8606018230707043
+      }
+    ],
+    "mean_fold_mae_f": 0.9478786628374692,
+    "mean_fold_r2": -0.23350474622913567,
+    "mean_fold_baseline_mae_f": 0.88878285830456,
+    "pooled_mae_f": 0.9478773892654649,
+    "pooled_r2": -0.16077987075935285
+  },
+  "tree_path_shap_mean_abs": [
+    {
+      "feature": "PM25",
+      "value_z": 0.2110568881034851
+    },
+    {
+      "feature": "Distance_to_Lake",
+      "value_z": 0.1272619664669037
+    },
+    {
+      "feature": "LOWINCPCT",
+      "value_z": 0.0836954340338707
+    },
+    {
+      "feature": "Distance_to_River",
+      "value_z": 0.07745935767889023
+    },
+    {
+      "feature": "Distance_to_Park",
+      "value_z": 0.06923158466815948
+    },
+    {
+      "feature": "Band_11",
+      "value_z": 0.0565398633480072
+    },
+    {
+      "feature": "PTRAF",
+      "value_z": 0.052022140473127365
+    },
+    {
+      "feature": "Band_10",
+      "value_z": 0.04104233160614967
+    },
+    {
+      "feature": "PRE1960PCT",
+      "value_z": 0.03726286068558693
+    },
+    {
+      "feature": "OVER64PCT",
+      "value_z": 0.03641767054796219
+    },
+    {
+      "feature": "UNEMPPCT",
+      "value_z": 0.03161817789077759
+    },
+    {
+      "feature": "NDVI",
+      "value_z": 0.030625371262431145
+    },
+    {
+      "feature": "PPermNCUnt",
+      "value_z": 0.028988493606448174
+    },
+    {
+      "feature": "Band_7",
+      "value_z": 0.024570748209953308
+    },
+    {
+      "feature": "PFclOO1517",
+      "value_z": 0.017241165041923523
+    },
+    {
+      "feature": "Band_2",
+      "value_z": 0.015396187081933022
+    },
+    {
+      "feature": "NDBI",
+      "value_z": 0.01470635924488306
+    },
+    {
+      "feature": "Band_3",
+      "value_z": 0.012617355212569237
+    },
+    {
+      "feature": "Band_1",
+      "value_z": 0.011517287231981754
+    },
+    {
+      "feature": "CoefVar",
+      "value_z": 0.010941557586193085
+    },
+    {
+      "feature": "PCVLnRsPr",
+      "value_z": 0.010339498519897461
+    },
+    {
+      "feature": "PRehabPerm",
+      "value_z": 0.010201958008110523
+    },
+    {
+      "feature": "PHHOO",
+      "value_z": 0.009279741905629635
+    },
+    {
+      "feature": "MdSalesPr",
+      "value_z": 0.009238377213478088
+    },
+    {
+      "feature": "PAPerm",
+      "value_z": 0.008815507404506207
+    },
+    {
+      "feature": "VptResVac",
+      "value_z": 0.008402922190725803
+    },
+    {
+      "feature": "PPubSubAll",
+      "value_z": 0.007412035949528217
+    },
+    {
+      "feature": "MVACluster_D",
+      "value_z": 0.002278737025335431
+    },
+    {
+      "feature": "MVACluster_F",
+      "value_z": 0.0015685645630583167
+    },
+    {
+      "feature": "MVACluster_H",
+      "value_z": 0.0007227251189760864
+    },
+    {
+      "feature": "MVACluster_E",
+      "value_z": 0.0004531563608907163
+    },
+    {
+      "feature": "MVACluster_G",
+      "value_z": 0.0003961629990953952
+    },
+    {
+      "feature": "MVACluster_C",
+      "value_z": 0.00019211432663723826
+    },
+    {
+      "feature": "MVACluster_I",
+      "value_z": 0.0001456515456084162
+    },
+    {
+      "feature": "MVACluster_B",
+      "value_z": 5.5232059821719304e-05
+    },
+    {
+      "feature": "MVACluster_NA",
+      "value_z": 0.0
+    },
+    {
+      "feature": "MVACluster_A",
+      "value_z": 0.0
+    }
+  ],
+  "tree_path_shap_additivity_verified": true,
+  "tree_path_shap_sample": {
+    "n": 1024,
+    "seed": 42,
+    "market_match": "first stored match per original observation"
+  }
+}

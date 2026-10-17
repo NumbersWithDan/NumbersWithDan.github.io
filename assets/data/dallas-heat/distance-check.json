@@ -1,0 +1,26 @@
+{
+  "Distance_t": {
+    "source": "Data/Dallas City Data/Parks/Parks.shp",
+    "source_sha256": "2cf904702de3a4105b719c8bdbbf4e313315d0a4a63f088aa7d697061637f4d0",
+    "polygon_count": 397,
+    "invalid_geometry_count": 1,
+    "geometry_repaired": false,
+    "observations": 19491,
+    "unit": "meters",
+    "median_absolute_difference_m": 0.0,
+    "max_absolute_difference_m": 1.9896404523933597e-09,
+    "matches_within_1cm": 19491
+  },
+  "Distance_1": {
+    "source": "Data/Water/Lakes/WaterFeatures.shp",
+    "source_sha256": "329a4b6140ad1f41222b21d37504508101acaffbabaf9c0513dd77963676ebf8",
+    "polygon_count": 14,
+    "invalid_geometry_count": 0,
+    "geometry_repaired": false,
+    "observations": 19491,
+    "unit": "meters",
+    "median_absolute_difference_m": 0.0,
+    "max_absolute_difference_m": 0.0,
+    "matches_within_1cm": 19491
+  }
+}

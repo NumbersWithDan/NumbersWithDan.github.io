@@ -1,0 +1,130 @@
+{
+  "NDVI": {
+    "source_root": "finished",
+    "shape": [
+      7721,
+      7591
+    ],
+    "crs": "EPSG:32614",
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "nodata": -9999.0,
+    "matches_saved_fraction": 1.0,
+    "sample_min": -0.18267419934272766,
+    "sample_max": 0.7365491390228271
+  },
+  "NDBI": {
+    "source_root": "finished",
+    "shape": [
+      7721,
+      7591
+    ],
+    "crs": "EPSG:32614",
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "nodata": -9999.0,
+    "matches_saved_fraction": 1.0,
+    "sample_min": -0.4055384695529938,
+    "sample_max": 0.21926124393939972
+  },
+  "LOWINCPCT": {
+    "source_root": "earlier_transfer",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016848812821816,
+      30.010868712498127
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 0.9989738853829973,
+    "sample_min": 0.0,
+    "sample_max": 0.9080547094345093
+  },
+  "OVER64PCT": {
+    "source_root": "finished",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016833189286178,
+      30.01089312383337
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 1.0,
+    "sample_min": 0.0,
+    "sample_max": 0.34846267104148865
+  },
+  "UNEMPPCT": {
+    "source_root": "finished",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016833189286178,
+      30.01089312383337
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 1.0,
+    "sample_min": 0.0,
+    "sample_max": 0.44805195927619934
+  },
+  "PRE1960PCT": {
+    "source_root": "finished",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016833189286178,
+      30.01089312383337
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 1.0,
+    "sample_min": 0.0,
+    "sample_max": 0.9778933525085449
+  },
+  "PM25": {
+    "source_root": "earlier_transfer",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016848812821816,
+      30.010868712498127
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 0.9993330254989482,
+    "sample_min": 9.289632797241211,
+    "sample_max": 9.468512535095215
+  },
+  "PTRAF": {
+    "source_root": "finished",
+    "shape": [
+      705,
+      737
+    ],
+    "crs": "EPSG:26914",
+    "resolution": [
+      30.016833189286178,
+      30.01089312383337
+    ],
+    "nodata": null,
+    "matches_saved_fraction": 1.0,
+    "sample_min": 19.761531829833984,
+    "sample_max": 2893.1005859375
+  }
+}

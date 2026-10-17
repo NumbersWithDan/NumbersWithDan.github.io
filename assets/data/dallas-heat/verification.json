@@ -1,0 +1,112 @@
+{
+  "n": 19491,
+  "temperature_min": 100.9,
+  "temperature_max": 110.1,
+  "temperature_mean": 105.31767482427787,
+  "temperature_sd": 1.1044348545869462,
+  "temperature_p05": 103.5,
+  "temperature_p95": 107.2,
+  "ndvi_temperature_pearson": -0.17603604355705815,
+  "missing": {
+    "t_f": 0,
+    "rh": 0,
+    "hi_f": 0,
+    "Band_1": 0,
+    "Band_2": 0,
+    "Band_3": 0,
+    "Band_7": 0,
+    "Band_10": 0,
+    "Band_11": 0,
+    "NDVI": 0,
+    "NDBI": 0,
+    "LOWINCPCT": 0,
+    "OVER64PCT": 0,
+    "UNEMPPCT": 0,
+    "PRE1960PCT": 0,
+    "PM25": 0,
+    "PTRAF": 273
+  },
+  "raw_and_derived_targets_match": true,
+  "versions": {
+    "python": "3.11.4",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit_learn": "1.5.1",
+    "matplotlib": "3.9.2"
+  },
+  "sha256": {
+    "Data\\UHI\\Shape files\\af_trav.dbf": "b13e3919d08d22954e430b69fcea10ec9490cb82856a9f7c67754d4b2345d9cd",
+    "Data\\UHI\\Shape files\\af_trav.shp": "b4ac8b082d0efe29ba033033a67aa38585fe7a08c78e70d38852ab329a0208c4",
+    "Data\\uhi_with_all_bands_and_ejscreen_features.dbf": "d1e21fd466d70be776dd901447b5facdbc741f6c8dc7f4edc50cfcf9f3692e5b",
+    "Data\\uhi_with_all_bands_and_ejscreen_features.shp": "95440e30187df6cecddcd8d43eb575ff5c78a2b70c6ca86cc0515153d437a45b"
+  },
+  "ndvi_quartiles": [
+    {
+      "quartile": "Least green",
+      "n": 4874,
+      "mean_temperature": 105.54439885104637
+    },
+    {
+      "quartile": "Lower middle",
+      "n": 4872,
+      "mean_temperature": 105.42296798029555
+    },
+    {
+      "quartile": "Upper middle",
+      "n": 4872,
+      "mean_temperature": 105.25556239737276
+    },
+    {
+      "quartile": "Most green",
+      "n": 4873,
+      "mean_temperature": 105.04773240303714
+    }
+  ],
+  "spatial_groups_2km": 74,
+  "random": {
+    "mae_f": [
+      0.4982779170501541,
+      0.469544910679291,
+      0.5017806437170151,
+      0.4913696020324334,
+      0.476167572979668
+    ],
+    "r2": [
+      0.6523041727629083,
+      0.6797833147205126,
+      0.6498163406016683,
+      0.6583168539871668,
+      0.6871096130917279
+    ],
+    "dummy_mean_mae_f": [
+      0.8712343211103456,
+      0.8703726629777602,
+      0.8790850306887723,
+      0.8724806443617057,
+      0.8704368913877328
+    ]
+  },
+  "spatial_2km": {
+    "mae_f": [
+      0.897345067344667,
+      0.853622283448554,
+      0.8075955949749349,
+      1.0322076320402342,
+      0.9006885927642269
+    ],
+    "r2": [
+      -0.34605915462112313,
+      0.10680488415342115,
+      -0.16080078671512,
+      -0.10196004629668765,
+      0.06497080202052874
+    ],
+    "dummy_mean_mae_f": [
+      0.7567102454783001,
+      0.9235500912333316,
+      0.7848670843517856,
+      0.9905788378354639,
+      0.929255397802903
+    ]
+  }
+}

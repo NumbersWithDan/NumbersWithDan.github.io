@@ -1,0 +1,48 @@
+{
+  "temperature": {
+    "n": 19491,
+    "min_f": 100.9,
+    "max_f": 110.1,
+    "mean_f": 105.31767482427787,
+    "p05_f": 103.5,
+    "p95_f": 107.2
+  },
+  "ndvi_quartiles": [
+    {
+      "group": 0,
+      "n": 4828,
+      "mean_f": 105.54747307373654
+    },
+    {
+      "group": 1,
+      "n": 4828,
+      "mean_f": 105.4223902236951
+    },
+    {
+      "group": 2,
+      "n": 4827,
+      "mean_f": 105.24261446032732
+    },
+    {
+      "group": 3,
+      "n": 4825,
+      "mean_f": 105.04872538860103
+    }
+  ],
+  "screening": {
+    "hot_cutoff_f": 106.0,
+    "hot_observations": 5274,
+    "eligible_observations": 5214,
+    "definition": "equal average of within-hot-pool percentile ranks: lower neighborhood NDVI, greater park distance, older housing share, older population share"
+  },
+  "anonymous_example": {
+    "observed_f": 106.7,
+    "held_out_environmental_prediction_f": 105.14254760742188,
+    "held_out_blended_prediction_f": 104.92080092405746,
+    "neighborhood_ndvi": 0.1878432400115612,
+    "park_distance_m": 799.7763597070578,
+    "pre1960_housing_share": 0.85106383,
+    "older_population_share": 0.273271277,
+    "screening_score": 0.9079881089374761
+  }
+}
