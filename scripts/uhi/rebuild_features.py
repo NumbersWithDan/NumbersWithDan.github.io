@@ -47,7 +47,7 @@ def join_once(points, polygons, columns, label, audit):
     return chosen[columns]
 
 
-def build(root, work):
+def build(root, work, points_input=None, extended=False):
     work.mkdir(parents=True, exist_ok=True)
     audit = {"sources": {}, "observation_policy": "one original afternoon survey record per row; no buffered neighborhood joins"}
     def track(path):
@@ -56,7 +56,7 @@ def build(root, work):
         return p
     raw_path = track("Data/UHI/Shape files/af_trav.shp")
     track("Data/UHI/Shape files/af_trav.dbf")
-    points = gpd.read_file(raw_path).to_crs(32614).reset_index(drop=True)
+    points = (gpd.read_file(raw_path) if points_input is None else points_input).to_crs(32614).reset_index(drop=True)
     assert points.geometry.geom_type.eq("Point").all() and points.t_f.notna().all()
     audit["observations"] = len(points)
     assert not points.geometry.duplicated().any()
@@ -71,7 +71,8 @@ def build(root, work):
     scene = "LC09_L1TP_027037_20231006_20231006_02_T1_"
     with rasterio.open(band_dir / (scene + "B4.TIF")) as ref:
         assert ref.crs.to_epsg() == 32614
-        bounds = points.total_bounds + np.array([-360, -360, 360, 360])
+        padding = 1200 if extended else 360
+        bounds = points.total_bounds + np.array([-padding, -padding, padding, padding])
         win0 = from_bounds(*bounds, transform=ref.transform)
         window = Window(int(np.floor(win0.col_off)), int(np.floor(win0.row_off)),
                         int(np.ceil(win0.width)) + 2, int(np.ceil(win0.height)) + 2)
@@ -111,13 +112,21 @@ def build(root, work):
         values = np.divide(bands[a] - bands[b], denominator, out=np.full_like(denominator, np.nan), where=denominator > 1e-6)
         assert np.nanmin(values) >= -1.000001 and np.nanmax(values) <= 1.000001
         X[name] = values[rows, cols]
-        for size in [7, 21]:
+        for size in ([7, 21, 71] if extended else [7, 21]):
             valid = np.isfinite(values)
             count = uniform_filter(valid.astype(float), size=size, mode="constant")
             total = uniform_filter(np.nan_to_num(values), size=size, mode="constant")
             mean = np.divide(total, count, out=np.full_like(total, np.nan), where=count >= .5)
             # Square windows approximately 210m and 630m wide on a 30m grid.
             X[f"{name}_mean_{size * 30}m"] = mean[rows, cols]
+        if extended:
+            X[name + "_local_contrast"] = X[name + "_mean_210m"] - X[name + "_mean_2130m"]
+            for label, condition in [("vegetated", values > .4)] if name == "NDVI" else [("built_signal", values > 0)]:
+                valid = np.isfinite(values)
+                coverage = uniform_filter(valid.astype(float), size=21, mode="constant")
+                numerator = uniform_filter((condition & valid).astype(float), size=21, mode="constant")
+                fraction = np.divide(numerator, coverage, out=np.full_like(coverage, np.nan), where=coverage >= .5)
+                X[label + "_fraction_630m"] = fraction[rows, cols]
     print("Satellite features rebuilt with QA masks and metadata calibration.", flush=True)
 
     # Distances from original geometry, with explicit topology repair counts.
@@ -156,6 +165,24 @@ def build(root, work):
     categories = joined.MVACluster.where(joined.MVACluster.isin(list("ABCDEFGHI")), "Missing")
     for label in list("ABCDEFGHI") + ["Missing"]:
         X["MVA_" + label] = (categories == label).astype(float)
+    if extended:
+        # Use canopy alone. TES scores and temperature indicators embed heat data.
+        canopy_path = root / "Data/TESA/tx_shp/tx_tes.shp"
+        canopy_crs = pyogrio.read_info(canopy_path)["crs"]
+        canopy = pyogrio.read_dataframe(canopy_path, columns=["treecanopy"],
+                                        bbox=tuple(points.to_crs(canopy_crs).total_bounds))
+        if len(canopy):
+            cv = join_once(points, canopy, ["treecanopy"], "canopy", audit)
+            X["tree_canopy_fraction"] = pd.to_numeric(cv.treecanopy, errors="coerce").where(lambda s: s.between(0, 1))
+        # Street length per square kilometre, independent of survey temperature.
+        from rasterio.features import rasterize
+        streets = gpd.read_file(root / "Data/Dallas City Data/Streets/STREETS.shp").to_crs(points.crs)
+        roads = rasterize(((g, 1) for g in streets.geometry if g is not None and not g.is_empty),
+                          out_shape=clear.shape, transform=transform,
+                          fill=0, all_touched=True, dtype="uint8")
+        for size in [7, 21]:
+            # Raster occupancy is a road footprint proxy, not surveyed lane area.
+            X[f"road_pixel_fraction_{size*30}m"] = uniform_filter(roads.astype(float), size=size, mode="constant")[rows, cols]
     assert len(X) == len(points) and X.index.is_unique
     assert not np.isinf(X.to_numpy()).any()
     audit["features"] = X.columns.tolist()

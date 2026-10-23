@@ -1,0 +1,705 @@
+{
+  "protocol": "100m cell means; independent period models; 1km outer blocks and 3 inner spatial folds",
+  "grid_m": 100,
+  "outer_block_m": 1000,
+  "candidates": [
+    [
+      "landscape",
+      5,
+      400,
+      10
+    ],
+    [
+      "combined",
+      5,
+      400,
+      10
+    ],
+    [
+      "combined",
+      7,
+      400,
+      10
+    ],
+    [
+      "combined",
+      3,
+      600,
+      20
+    ]
+  ],
+  "experiment_spec": {
+    "protocol": 2,
+    "configs": [
+      [
+        "landscape",
+        5,
+        400,
+        10
+      ],
+      [
+        "combined",
+        5,
+        400,
+        10
+      ],
+      [
+        "combined",
+        7,
+        400,
+        10
+      ],
+      [
+        "combined",
+        3,
+        600,
+        20
+      ]
+    ],
+    "learning_rate": 0.035,
+    "min_child_weight": 12,
+    "reg_alpha": 0.15,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "tree_method": "hist",
+    "seed": 42,
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "blocks_m": 1000,
+    "shifts": [
+      0,
+      0.5
+    ],
+    "stress_config": [
+      "combined",
+      3,
+      400,
+      20
+    ],
+    "stress_buffer_m": 500,
+    "neighbors": 32,
+    "support_distance_m": 1000,
+    "support_feature_quantile": 0.95
+  },
+  "periods": {
+    "Morning": {
+      "raw_readings": 21032,
+      "cells": 2804,
+      "reference_f": 86.05197233335915,
+      "standard_deviation_f": 1.486234342588928,
+      "hot_cutoff_f": 87.31488095238095,
+      "chosen_config": [
+        "combined",
+        7,
+        400,
+        10
+      ],
+      "final_columns": [
+        "TOA_B1",
+        "TOA_B2",
+        "TOA_B3",
+        "TOA_B4",
+        "TOA_B5",
+        "TOA_B6",
+        "TOA_B7",
+        "Brightness_B10_K",
+        "Brightness_B11_K",
+        "NDVI",
+        "NDVI_mean_210m",
+        "NDVI_mean_630m",
+        "NDVI_mean_2130m",
+        "NDVI_local_contrast",
+        "vegetated_fraction_630m",
+        "NDBI",
+        "NDBI_mean_210m",
+        "NDBI_mean_630m",
+        "NDBI_mean_2130m",
+        "NDBI_local_contrast",
+        "built_signal_fraction_630m",
+        "Distance_to_Park",
+        "Distance_to_Lake",
+        "Distance_to_Stream",
+        "LOWINCPCT",
+        "OVER64PCT",
+        "UNEMPPCT",
+        "PRE1960PCT",
+        "PM25",
+        "PTRAF",
+        "MdSalesPr",
+        "CoefVar",
+        "PHHOO",
+        "VptResVac",
+        "PPermNCUnt",
+        "PRehabPerm",
+        "PFclOO1517",
+        "PCVLnRsPr",
+        "PPubSubAll",
+        "PAPerm",
+        "MVA_A",
+        "MVA_B",
+        "MVA_C",
+        "MVA_D",
+        "MVA_E",
+        "MVA_F",
+        "MVA_G",
+        "MVA_H",
+        "MVA_I",
+        "MVA_Missing",
+        "road_pixel_fraction_210m",
+        "road_pixel_fraction_630m"
+      ],
+      "outer_selections": [
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.6294792725569794,
+            0.4035489749943502,
+            0.4014210615516194,
+            0.4305587481660875
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.5900448396852477,
+            0.40967341345768166,
+            0.4037263836548836,
+            0.420221877359849
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.6415906621960911,
+            0.4409069685542437,
+            0.43918210855311385,
+            0.44135182061628275
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.6652568353847571,
+            0.4080075968549868,
+            0.4087081120454025,
+            0.4167384405007037
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.6495484400850152,
+            0.4082116242385416,
+            0.39800368634865385,
+            0.42922282309858284
+          ]
+        }
+      ],
+      "models": {
+        "environmental": {
+          "mae_f": 0.367457982904402,
+          "r2": 0.8929591741121512,
+          "spearman": 0.947308849225682,
+          "average_precision": 0.9188915821705421,
+          "hot_prevalence": 0.25320970042796004,
+          "precision_top_quarter": 0.8530670470756063,
+          "recall_top_quarter": 0.8422535211267606
+        },
+        "spatial": {
+          "mae_f": 0.31547965577056303,
+          "r2": 0.9209685576309841,
+          "spearman": 0.9625210162689221,
+          "average_precision": 0.9399003863087069,
+          "hot_prevalence": 0.25320970042796004,
+          "precision_top_quarter": 0.8687589158345221,
+          "recall_top_quarter": 0.8577464788732394
+        },
+        "mean": {
+          "mae_f": 1.2744599543791437,
+          "r2": -0.0016520443698160303,
+          "spearman": null,
+          "average_precision": 0.25320970042796004,
+          "hot_prevalence": 0.25320970042796004,
+          "precision_top_quarter": null,
+          "recall_top_quarter": null
+        },
+        "original_features": {
+          "mae_f": 0.3696553356847178,
+          "r2": 0.8908283086005206,
+          "spearman": 0.9453612798226068,
+          "average_precision": 0.9091838695671159,
+          "hot_prevalence": 0.25320970042796004,
+          "precision_top_quarter": 0.8359486447931527,
+          "recall_top_quarter": 0.8253521126760563
+        }
+      },
+      "shifted_mae_f": 0.37002395034653934,
+      "shifted_r2": 0.8960923762632133,
+      "regional_mae_f": 0.5979311719977318,
+      "regional_mean_mae_f": 1.4810695564216871,
+      "support_rule": "nearest survey cell <= 1000m; robust-scaled model-feature nearest-neighbor distance <= training leave-one-out 95th percentile; valid point NDVI",
+      "support_feature_threshold": 2.8257391414940756,
+      "city_land_cells": 88666,
+      "supported_city_land_cells": 19874
+    },
+    "Afternoon": {
+      "raw_readings": 19491,
+      "cells": 2761,
+      "reference_f": 105.32907837430443,
+      "standard_deviation_f": 1.063380090350511,
+      "hot_cutoff_f": 106.0,
+      "chosen_config": [
+        "combined",
+        5,
+        400,
+        10
+      ],
+      "final_columns": [
+        "TOA_B1",
+        "TOA_B2",
+        "TOA_B3",
+        "TOA_B4",
+        "TOA_B5",
+        "TOA_B6",
+        "TOA_B7",
+        "Brightness_B10_K",
+        "Brightness_B11_K",
+        "NDVI",
+        "NDVI_mean_210m",
+        "NDVI_mean_630m",
+        "NDVI_mean_2130m",
+        "NDVI_local_contrast",
+        "vegetated_fraction_630m",
+        "NDBI",
+        "NDBI_mean_210m",
+        "NDBI_mean_630m",
+        "NDBI_mean_2130m",
+        "NDBI_local_contrast",
+        "built_signal_fraction_630m",
+        "Distance_to_Park",
+        "Distance_to_Lake",
+        "Distance_to_Stream",
+        "LOWINCPCT",
+        "OVER64PCT",
+        "UNEMPPCT",
+        "PRE1960PCT",
+        "PM25",
+        "PTRAF",
+        "MdSalesPr",
+        "CoefVar",
+        "PHHOO",
+        "VptResVac",
+        "PPermNCUnt",
+        "PRehabPerm",
+        "PFclOO1517",
+        "PCVLnRsPr",
+        "PPubSubAll",
+        "PAPerm",
+        "MVA_A",
+        "MVA_B",
+        "MVA_C",
+        "MVA_D",
+        "MVA_E",
+        "MVA_F",
+        "MVA_G",
+        "MVA_H",
+        "MVA_I",
+        "MVA_Missing",
+        "road_pixel_fraction_210m",
+        "road_pixel_fraction_630m"
+      ],
+      "outer_selections": [
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.8117209538507529,
+            0.7614719809138272,
+            0.7630506502198555,
+            0.7739841952291936
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.7941564739489037,
+            0.753074818943638,
+            0.7573821539558038,
+            0.760963076265955
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.8030964057753707,
+            0.7704829992698515,
+            0.7676184578052694,
+            0.7876034411312748
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.8318923563010907,
+            0.7771087596195904,
+            0.7824826601454471,
+            0.7883919707380317
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.8065416236519299,
+            0.7667942607368579,
+            0.7637701562308324,
+            0.7786896955757824
+          ]
+        }
+      ],
+      "models": {
+        "environmental": {
+          "mae_f": 0.746228057798556,
+          "r2": 0.2083652775811421,
+          "spearman": 0.45563607167007286,
+          "average_precision": 0.5230949417036184,
+          "hot_prevalence": 0.2549800796812749,
+          "precision_top_quarter": 0.5036179450072359,
+          "recall_top_quarter": 0.4943181818181818
+        },
+        "spatial": {
+          "mae_f": 0.7033930353081972,
+          "r2": 0.30207230107416294,
+          "spearman": 0.5394658789252695,
+          "average_precision": 0.574268411028973,
+          "hot_prevalence": 0.2549800796812749,
+          "precision_top_quarter": 0.5397973950795948,
+          "recall_top_quarter": 0.5298295454545454
+        },
+        "mean": {
+          "mae_f": 0.8507842390873813,
+          "r2": -0.018611817484688764,
+          "spearman": null,
+          "average_precision": 0.2549800796812749,
+          "hot_prevalence": 0.2549800796812749,
+          "precision_top_quarter": null,
+          "recall_top_quarter": null
+        },
+        "original_features": {
+          "mae_f": 0.74063320799948,
+          "r2": 0.22024244662499393,
+          "spearman": 0.4555140648069735,
+          "average_precision": 0.5237846001758454,
+          "hot_prevalence": 0.2549800796812749,
+          "precision_top_quarter": 0.5050651230101303,
+          "recall_top_quarter": 0.49573863636363635
+        }
+      },
+      "shifted_mae_f": 0.7222875034174355,
+      "shifted_r2": 0.2487126591638371,
+      "regional_mae_f": 0.8696399941867438,
+      "regional_mean_mae_f": 0.8609179272487586,
+      "support_rule": "nearest survey cell <= 1000m; robust-scaled model-feature nearest-neighbor distance <= training leave-one-out 95th percentile; valid point NDVI",
+      "support_feature_threshold": 2.774661682450073,
+      "city_land_cells": 88666,
+      "supported_city_land_cells": 18400
+    },
+    "Evening": {
+      "raw_readings": 19517,
+      "cells": 2670,
+      "reference_f": 102.44532935235677,
+      "standard_deviation_f": 0.8963766872292379,
+      "hot_cutoff_f": 103.05,
+      "chosen_config": [
+        "combined",
+        7,
+        400,
+        10
+      ],
+      "final_columns": [
+        "TOA_B1",
+        "TOA_B2",
+        "TOA_B3",
+        "TOA_B4",
+        "TOA_B5",
+        "TOA_B6",
+        "TOA_B7",
+        "Brightness_B10_K",
+        "Brightness_B11_K",
+        "NDVI",
+        "NDVI_mean_210m",
+        "NDVI_mean_630m",
+        "NDVI_mean_2130m",
+        "NDVI_local_contrast",
+        "vegetated_fraction_630m",
+        "NDBI",
+        "NDBI_mean_210m",
+        "NDBI_mean_630m",
+        "NDBI_mean_2130m",
+        "NDBI_local_contrast",
+        "built_signal_fraction_630m",
+        "Distance_to_Park",
+        "Distance_to_Lake",
+        "Distance_to_Stream",
+        "LOWINCPCT",
+        "OVER64PCT",
+        "UNEMPPCT",
+        "PRE1960PCT",
+        "PM25",
+        "PTRAF",
+        "MdSalesPr",
+        "CoefVar",
+        "PHHOO",
+        "VptResVac",
+        "PPermNCUnt",
+        "PRehabPerm",
+        "PFclOO1517",
+        "PCVLnRsPr",
+        "PPubSubAll",
+        "PAPerm",
+        "MVA_A",
+        "MVA_B",
+        "MVA_C",
+        "MVA_D",
+        "MVA_E",
+        "MVA_F",
+        "MVA_G",
+        "MVA_H",
+        "MVA_I",
+        "MVA_Missing",
+        "road_pixel_fraction_210m",
+        "road_pixel_fraction_630m"
+      ],
+      "outer_selections": [
+        {
+          "config": [
+            "combined",
+            7,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.5611055878964809,
+            0.5068285421939146,
+            0.5018090366207614,
+            0.5156003736864093
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.523254434320009,
+            0.45817462220796257,
+            0.46137027771755323,
+            0.46721184422225326
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.550605283096449,
+            0.5080853019471143,
+            0.5085989327694845,
+            0.5166783714977967
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.5458640385408108,
+            0.47394552747016544,
+            0.4740369956371986,
+            0.4971994772022435
+          ]
+        },
+        {
+          "config": [
+            "combined",
+            5,
+            400,
+            10
+          ],
+          "inner_mae": [
+            0.5322105879375872,
+            0.4718598177511613,
+            0.47473380948808197,
+            0.47315914839616946
+          ]
+        }
+      ],
+      "models": {
+        "environmental": {
+          "mae_f": 0.44436373329872114,
+          "r2": 0.5613625139769522,
+          "spearman": 0.7440885780991334,
+          "average_precision": 0.6320056074827964,
+          "hot_prevalence": 0.24868913857677902,
+          "precision_top_quarter": 0.5853293413173652,
+          "recall_top_quarter": 0.588855421686747
+        },
+        "spatial": {
+          "mae_f": 0.46160525177159994,
+          "r2": 0.5138032566137567,
+          "spearman": 0.7071614633728994,
+          "average_precision": 0.5605748546297459,
+          "hot_prevalence": 0.24868913857677902,
+          "precision_top_quarter": 0.5568862275449101,
+          "recall_top_quarter": 0.5602409638554217
+        },
+        "mean": {
+          "mae_f": 0.6879028105148566,
+          "r2": -0.007874281080730627,
+          "spearman": null,
+          "average_precision": 0.24868913857677902,
+          "hot_prevalence": 0.24868913857677902,
+          "precision_top_quarter": null,
+          "recall_top_quarter": null
+        },
+        "original_features": {
+          "mae_f": 0.45271493417930336,
+          "r2": 0.545419942009272,
+          "spearman": 0.7412394865854148,
+          "average_precision": 0.6111411265195615,
+          "hot_prevalence": 0.24868913857677902,
+          "precision_top_quarter": 0.5763473053892215,
+          "recall_top_quarter": 0.5798192771084337
+        }
+      },
+      "shifted_mae_f": 0.45184490490816615,
+      "shifted_r2": 0.5641784074399097,
+      "regional_mae_f": 0.6725164175699527,
+      "regional_mean_mae_f": 0.7486995147517883,
+      "support_rule": "nearest survey cell <= 1000m; robust-scaled model-feature nearest-neighbor distance <= training leave-one-out 95th percentile; valid point NDVI",
+      "support_feature_threshold": 2.8339007520822532,
+      "city_land_cells": 88666,
+      "supported_city_land_cells": 17891
+    }
+  },
+  "features": [
+    "TOA_B1",
+    "TOA_B2",
+    "TOA_B3",
+    "TOA_B4",
+    "TOA_B5",
+    "TOA_B6",
+    "TOA_B7",
+    "Brightness_B10_K",
+    "Brightness_B11_K",
+    "NDVI",
+    "NDVI_mean_210m",
+    "NDVI_mean_630m",
+    "NDVI_mean_2130m",
+    "NDVI_local_contrast",
+    "vegetated_fraction_630m",
+    "NDBI",
+    "NDBI_mean_210m",
+    "NDBI_mean_630m",
+    "NDBI_mean_2130m",
+    "NDBI_local_contrast",
+    "built_signal_fraction_630m",
+    "Distance_to_Park",
+    "Distance_to_Lake",
+    "Distance_to_Stream",
+    "LOWINCPCT",
+    "OVER64PCT",
+    "UNEMPPCT",
+    "PRE1960PCT",
+    "PM25",
+    "PTRAF",
+    "MdSalesPr",
+    "CoefVar",
+    "PHHOO",
+    "VptResVac",
+    "PPermNCUnt",
+    "PRehabPerm",
+    "PFclOO1517",
+    "PCVLnRsPr",
+    "PPubSubAll",
+    "PAPerm",
+    "MVA_A",
+    "MVA_B",
+    "MVA_C",
+    "MVA_D",
+    "MVA_E",
+    "MVA_F",
+    "MVA_G",
+    "MVA_H",
+    "MVA_I",
+    "MVA_Missing",
+    "road_pixel_fraction_210m",
+    "road_pixel_fraction_630m"
+  ],
+  "raw_counts": {
+    "Morning": 21032,
+    "Afternoon": 19491,
+    "Evening": 19517
+  },
+  "feature_cache_sha256": "e897a6f35a1b7e5c8f8d45fb5a0d73e4f81cdb74a47eaaa2b07a1a4b231b61bf",
+  "target": "cell air temperature minus equal-cell training-period mean, in Fahrenheit",
+  "hot_definition": "above the training-period 75th percentile of 100m cell means",
+  "prediction_scope": "environmental citywide scenario for campaign-day conditions, not current weather",
+  "classification": "ranking metrics only; heat scores are not calibrated probabilities"
+}

@@ -1,0 +1,26 @@
+{
+  "period_checks": [
+    {
+      "period": "Morning",
+      "cells": 2804,
+      "folds": 5,
+      "metrics_verified": true
+    },
+    {
+      "period": "Afternoon",
+      "cells": 2761,
+      "folds": 5,
+      "metrics_verified": true
+    },
+    {
+      "period": "Evening",
+      "cells": 2670,
+      "folds": 5,
+      "metrics_verified": true
+    }
+  ],
+  "normalized_display_only": true,
+  "public_coordinate_keys_absent": true,
+  "local_and_global_shap_additivity": "asserted during every render",
+  "classification_note": "scores rank heat; they are not calibrated probabilities"
+}

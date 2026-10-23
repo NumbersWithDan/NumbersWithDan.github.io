@@ -1,3 +1,5 @@
+> Historical review from October 17, 2026. The current October 23 heat-island analysis uses separate time periods and equally weighted 100 m cells. See scripts/uhi/README.md and islands-results.json for the workflow now used on the portfolio page. These earlier record-level metrics are not directly comparable.
+
 # Dallas heat project code review and retraining
 
 Updated October 17, 2026 after the complete source-data transfer. This supersedes the earlier incomplete-transfer and saved-model reviews.

@@ -1,0 +1,92 @@
+{
+  "period": "Afternoon",
+  "config": [
+    "combined",
+    4,
+    200,
+    10
+  ],
+  "grid_origin": "fixed projected grid; consistent across tested sizes",
+  "records": [
+    {
+      "block_m": 100,
+      "shift": 0,
+      "mae_f": 0.617144755887902,
+      "r2": 0.457110949366627,
+      "mean_mae_f": 0.8432777883184878,
+      "median_nearest_training_m": 100.0
+    },
+    {
+      "block_m": 100,
+      "shift": 0.5,
+      "mae_f": 0.617144755887902,
+      "r2": 0.457110949366627,
+      "mean_mae_f": 0.8432777883184878,
+      "median_nearest_training_m": 100.0
+    },
+    {
+      "block_m": 250,
+      "shift": 0,
+      "mae_f": 0.6686541014104465,
+      "r2": 0.3637044227291032,
+      "mean_mae_f": 0.8449970675873915,
+      "median_nearest_training_m": 100.0
+    },
+    {
+      "block_m": 250,
+      "shift": 0.5,
+      "mae_f": 0.6631289790123532,
+      "r2": 0.37273658866448933,
+      "mean_mae_f": 0.844486650410236,
+      "median_nearest_training_m": 100.0
+    },
+    {
+      "block_m": 500,
+      "shift": 0,
+      "mae_f": 0.7120182075400515,
+      "r2": 0.27548921010859617,
+      "mean_mae_f": 0.8475803263018578,
+      "median_nearest_training_m": 200.0
+    },
+    {
+      "block_m": 500,
+      "shift": 0.5,
+      "mae_f": 0.7069179299849906,
+      "r2": 0.28714162461858506,
+      "mean_mae_f": 0.8438680483513129,
+      "median_nearest_training_m": 200.0
+    },
+    {
+      "block_m": 1000,
+      "shift": 0,
+      "mae_f": 0.7536114150722371,
+      "r2": 0.2048894393218318,
+      "mean_mae_f": 0.8507842390873813,
+      "median_nearest_training_m": 316.22776601683796
+    },
+    {
+      "block_m": 1000,
+      "shift": 0.5,
+      "mae_f": 0.7406097925127179,
+      "r2": 0.22308524797624985,
+      "mean_mae_f": 0.850691899173169,
+      "median_nearest_training_m": 316.22776601683796
+    },
+    {
+      "block_m": 2000,
+      "shift": 0,
+      "mae_f": 0.7809892267768378,
+      "r2": 0.14932871653560809,
+      "mean_mae_f": 0.8467510046363168,
+      "median_nearest_training_m": 538.5164807134504
+    },
+    {
+      "block_m": 2000,
+      "shift": 0.5,
+      "mae_f": 0.7961806127170222,
+      "r2": 0.10887247536035949,
+      "mean_mae_f": 0.8510075130235598,
+      "median_nearest_training_m": 583.09518948453
+    }
+  ]
+}

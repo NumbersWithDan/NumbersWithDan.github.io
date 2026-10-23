@@ -1,0 +1,871 @@
+{
+  "greenery": [
+    {
+      "period": "Morning",
+      "quartile_mean_excess_f": [
+        1.397196541899559,
+        0.3709042997883192,
+        -0.7105195268985662,
+        -1.0609934125452203
+      ]
+    },
+    {
+      "period": "Afternoon",
+      "quartile_mean_excess_f": [
+        0.29385073657823657,
+        0.09353031307461505,
+        -0.09928222070312899,
+        -0.2864496284617338
+      ]
+    },
+    {
+      "period": "Evening",
+      "quartile_mean_excess_f": [
+        0.5650797781833529,
+        0.200417129214304,
+        -0.11025849908875987,
+        -0.6578917072980777
+      ]
+    }
+  ],
+  "periods": {
+    "Morning": {
+      "candidate_patches": 45,
+      "displayed_cases": [
+        {
+          "name": "A",
+          "cells": 301,
+          "area_km2": 3.0100000000000002,
+          "mean_excess_f": 2.264960765838623,
+          "mean_local_contrast_f": 0.5818005189392372,
+          "example_excess_f": 2.9227681159973145,
+          "example_local_contrast_f": 1.2627926240426994,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_2130m",
+              "label": "Wider-area vegetation",
+              "contribution_f": 0.29750803112983704,
+              "feature_value": 0.19255211100234,
+              "ring_feature_mean": 0.24698384878209612
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.20049989223480225,
+              "feature_value": 9.432128795,
+              "ring_feature_mean": 9.432116001380878
+            },
+            {
+              "feature": "NDVI_mean_630m",
+              "label": "Neighborhood vegetation",
+              "contribution_f": 0.1611005812883377,
+              "feature_value": 0.13365771217434905,
+              "ring_feature_mean": 0.23373823819966305
+            },
+            {
+              "feature": "NDVI_mean_210m",
+              "label": "Vegetation nearby",
+              "contribution_f": 0.1091710776090622,
+              "feature_value": 0.12061583444297785,
+              "ring_feature_mean": 0.23384072605120662
+            },
+            {
+              "feature": "vegetated_fraction_630m",
+              "label": "Greener pixel share",
+              "contribution_f": 0.08447089791297913,
+              "feature_value": 0.01814058956916101,
+              "ring_feature_mean": 0.1678632024152155
+            },
+            {
+              "feature": "Distance_to_Lake",
+              "label": "Distance to a lake",
+              "contribution_f": 0.06869871914386749,
+              "feature_value": 4174.072354164776,
+              "ring_feature_mean": 4237.36027200001
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 0.840768575668335,
+            "500_1500m": 1.2627924680709839,
+            "750_2000m": 1.4928780794143677
+          },
+          "nearby_survey": {
+            "distance_m": 100.0,
+            "observed_excess_f": 2.9855276666408486,
+            "heldout_excess_f": 1.9780722223049167
+          }
+        },
+        {
+          "name": "B",
+          "cells": 242,
+          "area_km2": 2.42,
+          "mean_excess_f": 2.2241172790527344,
+          "mean_local_contrast_f": 0.5822188873809833,
+          "example_excess_f": 2.8376755714416504,
+          "example_local_contrast_f": 1.165773150374492,
+          "drivers": [
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.37485969066619873,
+              "feature_value": 9.432128795,
+              "ring_feature_mean": 9.428542794361665
+            },
+            {
+              "feature": "NDVI_mean_2130m",
+              "label": "Wider-area vegetation",
+              "contribution_f": 0.26885905861854553,
+              "feature_value": 0.195907277126429,
+              "ring_feature_mean": 0.23905863133947258
+            },
+            {
+              "feature": "NDBI_mean_2130m",
+              "label": "Wider-area built-up signal",
+              "contribution_f": 0.09649769961833954,
+              "feature_value": -0.0312155482611869,
+              "ring_feature_mean": -0.04846804237110783
+            },
+            {
+              "feature": "vegetated_fraction_630m",
+              "label": "Greener pixel share",
+              "contribution_f": 0.07454977929592133,
+              "feature_value": 0.04308390022675768,
+              "ring_feature_mean": 0.1752613324358125
+            },
+            {
+              "feature": "road_pixel_fraction_210m",
+              "label": "Streets nearby",
+              "contribution_f": 0.06747369468212128,
+              "feature_value": 0.8367346938775508,
+              "ring_feature_mean": 0.4656802721088435
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.06327538192272186,
+              "feature_value": 746.1035870855737,
+              "ring_feature_mean": 707.9194780741598
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 0.9037214517593384,
+            "500_1500m": 1.1657731533050537,
+            "750_2000m": 1.3660707473754883
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 2.8855276666408542,
+            "heldout_excess_f": 2.218894060683823
+          }
+        },
+        {
+          "name": "C",
+          "cells": 103,
+          "area_km2": 1.03,
+          "mean_excess_f": 2.1264774799346924,
+          "mean_local_contrast_f": 0.4406878092445943,
+          "example_excess_f": 2.6334826946258545,
+          "example_local_contrast_f": 0.9237325904890894,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_2130m",
+              "label": "Wider-area vegetation",
+              "contribution_f": 0.24166786670684814,
+              "feature_value": 0.243742501390968,
+              "ring_feature_mean": 0.2733669010567392
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.1453723907470703,
+              "feature_value": 9.440512301,
+              "ring_feature_mean": 9.442785381189063
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.09554973989725113,
+              "feature_value": 465.31594926574735,
+              "ring_feature_mean": 540.7363613989321
+            },
+            {
+              "feature": "NDBI_mean_2130m",
+              "label": "Wider-area built-up signal",
+              "contribution_f": 0.07577376067638397,
+              "feature_value": -0.03338693985485867,
+              "ring_feature_mean": -0.06165427416471655
+            },
+            {
+              "feature": "vegetated_fraction_630m",
+              "label": "Greener pixel share",
+              "contribution_f": 0.06368881464004517,
+              "feature_value": 0.1269841269841276,
+              "ring_feature_mean": 0.2318643447254681
+            },
+            {
+              "feature": "NDVI_mean_210m",
+              "label": "Vegetation nearby",
+              "contribution_f": 0.04720401018857956,
+              "feature_value": 0.1797015784186668,
+              "ring_feature_mean": 0.26365713163903876
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 0.7685656547546387,
+            "500_1500m": 0.9237327575683594,
+            "750_2000m": 1.0648390054702759
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 2.8855276666408542,
+            "heldout_excess_f": 1.7706060968166355
+          }
+        }
+      ],
+      "supported_land_share": 0.22585887513779504,
+      "predicted_excess_supported_p05_p95": [
+        -2.3573746919631957,
+        1.9516087114810943
+      ]
+    },
+    "Afternoon": {
+      "candidate_patches": 43,
+      "displayed_cases": [
+        {
+          "name": "A",
+          "cells": 9,
+          "area_km2": 0.09,
+          "mean_excess_f": 1.6691129207611084,
+          "mean_local_contrast_f": 1.6434387807595678,
+          "example_excess_f": 2.3568410873413086,
+          "example_local_contrast_f": 2.327143751246164,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_2130m",
+              "label": "Wider-area vegetation",
+              "contribution_f": 0.3345091938972473,
+              "feature_value": 0.19250811379933336,
+              "ring_feature_mean": 0.21910408217152574
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.2842164933681488,
+              "feature_value": 1517.6175436476974,
+              "ring_feature_mean": 1243.3055368349915
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.2582663893699646,
+              "feature_value": 9.431147479,
+              "ring_feature_mean": 9.427544855519672
+            },
+            {
+              "feature": "road_pixel_fraction_210m",
+              "label": "Streets nearby",
+              "contribution_f": 0.2276770919561386,
+              "feature_value": 0.836734693877551,
+              "ring_feature_mean": 0.6013047842087654
+            },
+            {
+              "feature": "Distance_to_Lake",
+              "label": "Distance to a lake",
+              "contribution_f": 0.19640104472637177,
+              "feature_value": 3696.8944172478427,
+              "ring_feature_mean": 3828.759470033005
+            },
+            {
+              "feature": "Distance_to_Park",
+              "label": "Distance to a park",
+              "contribution_f": 0.12022809684276581,
+              "feature_value": 0.0,
+              "ring_feature_mean": 238.13558587711591
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 2.457040548324585,
+            "500_1500m": 2.327143669128418,
+            "750_2000m": 2.2809228897094727
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 2.787588292362244,
+            "heldout_excess_f": -0.04455536405052385
+          }
+        },
+        {
+          "name": "B",
+          "cells": 271,
+          "area_km2": 2.71,
+          "mean_excess_f": 1.6085197925567627,
+          "mean_local_contrast_f": 1.09209352519389,
+          "example_excess_f": 2.442965269088745,
+          "example_local_contrast_f": 2.172303999255247,
+          "drivers": [
+            {
+              "feature": "NDBI_mean_2130m",
+              "label": "Wider-area built-up signal",
+              "contribution_f": 0.5037798285484314,
+              "feature_value": -0.024452928779267396,
+              "ring_feature_mean": -0.049110752416905934
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.40109196305274963,
+              "feature_value": 9.43215126,
+              "ring_feature_mean": 9.428324990935332
+            },
+            {
+              "feature": "road_pixel_fraction_630m",
+              "label": "Neighborhood street footprint",
+              "contribution_f": 0.19366827607154846,
+              "feature_value": 0.16553287981859405,
+              "ring_feature_mean": 0.23466168801905618
+            },
+            {
+              "feature": "NDVI_mean_2130m",
+              "label": "Wider-area vegetation",
+              "contribution_f": 0.19265717267990112,
+              "feature_value": 0.25484867209491163,
+              "ring_feature_mean": 0.2837657829200906
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.17454403638839722,
+              "feature_value": 1318.90305469309,
+              "ring_feature_mean": 746.1080005754354
+            },
+            {
+              "feature": "Distance_to_Park",
+              "label": "Distance to a park",
+              "contribution_f": 0.1710640788078308,
+              "feature_value": 1021.6942978776257,
+              "ring_feature_mean": 650.8556601078124
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 1.808032512664795,
+            "500_1500m": 2.1723039150238037,
+            "750_2000m": 2.2850635051727295
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 3.1209216256955727,
+            "heldout_excess_f": 2.087738337121351
+          }
+        },
+        {
+          "name": "C",
+          "cells": 93,
+          "area_km2": 0.93,
+          "mean_excess_f": 1.2638548612594604,
+          "mean_local_contrast_f": 0.9577274449307586,
+          "example_excess_f": 2.2073702812194824,
+          "example_local_contrast_f": 1.9439871785531069,
+          "drivers": [
+            {
+              "feature": "NDBI_mean_2130m",
+              "label": "Wider-area built-up signal",
+              "contribution_f": 0.3516250252723694,
+              "feature_value": -0.17073685371134387,
+              "ring_feature_mean": -0.16315257313012535
+            },
+            {
+              "feature": "PAPerm",
+              "label": "Permit activity indicator",
+              "contribution_f": 0.17252889275550842,
+              "feature_value": 0.042,
+              "ring_feature_mean": 0.038749482401656314
+            },
+            {
+              "feature": "Distance_to_Lake",
+              "label": "Distance to a lake",
+              "contribution_f": 0.1337348371744156,
+              "feature_value": 2962.911595370209,
+              "ring_feature_mean": 3068.1975087559604
+            },
+            {
+              "feature": "vegetated_fraction_630m",
+              "label": "Greener pixel share",
+              "contribution_f": 0.13107845187187195,
+              "feature_value": 0.47392290249433117,
+              "ring_feature_mean": 0.6665851757369612
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.1097712442278862,
+              "feature_value": 9.412160466,
+              "ring_feature_mean": 9.415626395039062
+            },
+            {
+              "feature": "NDBI_mean_630m",
+              "label": "Neighborhood built-up signal",
+              "contribution_f": 0.09182384610176086,
+              "feature_value": -0.13063856917168298,
+              "ring_feature_mean": -0.1725663694122866
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 1.7458314895629883,
+            "500_1500m": 1.9439871311187744,
+            "750_2000m": 2.022721290588379
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 3.0042549590288985,
+            "heldout_excess_f": 0.22686797579322615
+          }
+        }
+      ],
+      "supported_land_share": 0.2091075426454377,
+      "predicted_excess_supported_p05_p95": [
+        -1.1858703374862671,
+        1.1663890480995174
+      ]
+    },
+    "Evening": {
+      "candidate_patches": 82,
+      "displayed_cases": [
+        {
+          "name": "A",
+          "cells": 10,
+          "area_km2": 0.1,
+          "mean_excess_f": 1.2520326375961304,
+          "mean_local_contrast_f": 1.8926472594777934,
+          "example_excess_f": 1.478617787361145,
+          "example_local_contrast_f": 2.1027984276873113,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_210m",
+              "label": "Vegetation nearby",
+              "contribution_f": 0.5725438594818115,
+              "feature_value": 0.3108577658888681,
+              "ring_feature_mean": 0.47402240926011857
+            },
+            {
+              "feature": "road_pixel_fraction_630m",
+              "label": "Neighborhood street footprint",
+              "contribution_f": 0.2177731990814209,
+              "feature_value": 0.5600907029478456,
+              "ring_feature_mean": 0.4199906417593496
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.17865782976150513,
+              "feature_value": 9.379402849,
+              "ring_feature_mean": 9.370626881174605
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.12097576260566711,
+              "feature_value": 770.073047918073,
+              "ring_feature_mean": 397.9506455310262
+            },
+            {
+              "feature": "NDVI_mean_630m",
+              "label": "Neighborhood vegetation",
+              "contribution_f": 0.1079692542552948,
+              "feature_value": 0.40320277345624855,
+              "ring_feature_mean": 0.4720722296043207
+            },
+            {
+              "feature": "road_pixel_fraction_210m",
+              "label": "Streets nearby",
+              "contribution_f": 0.07781757414340973,
+              "feature_value": 0.6734693877551022,
+              "ring_feature_mean": 0.42018140589569164
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 1.9534236192703247,
+            "500_1500m": 2.1027984619140625,
+            "750_2000m": 2.148014545440674
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 1.794670647643244,
+            "heldout_excess_f": 0.6736281671744848
+          }
+        },
+        {
+          "name": "B",
+          "cells": 24,
+          "area_km2": 0.24,
+          "mean_excess_f": 0.9072535634040833,
+          "mean_local_contrast_f": 1.3750861295530399,
+          "example_excess_f": 1.3862833976745605,
+          "example_local_contrast_f": 1.8506182101395097,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_210m",
+              "label": "Vegetation nearby",
+              "contribution_f": 0.5261232256889343,
+              "feature_value": 0.21107263943580248,
+              "ring_feature_mean": 0.4310998257072063
+            },
+            {
+              "feature": "NDVI_mean_630m",
+              "label": "Neighborhood vegetation",
+              "contribution_f": 0.1414976567029953,
+              "feature_value": 0.3162184565678657,
+              "ring_feature_mean": 0.42966908468696213
+            },
+            {
+              "feature": "NDBI_mean_2130m",
+              "label": "Wider-area built-up signal",
+              "contribution_f": 0.12040629982948303,
+              "feature_value": -0.1507677618338007,
+              "ring_feature_mean": -0.14403009486091176
+            },
+            {
+              "feature": "road_pixel_fraction_210m",
+              "label": "Streets nearby",
+              "contribution_f": 0.11685589700937271,
+              "feature_value": 0.8979591836734698,
+              "ring_feature_mean": 0.3779017857142858
+            },
+            {
+              "feature": "Brightness_B10_K",
+              "label": "Satellite thermal signal 10",
+              "contribution_f": 0.09436853975057602,
+              "feature_value": 303.0142054804031,
+              "ring_feature_mean": 301.869338955687
+            },
+            {
+              "feature": "Distance_to_Stream",
+              "label": "Distance to a stream",
+              "contribution_f": 0.09397757798433304,
+              "feature_value": 635.4718245776146,
+              "ring_feature_mean": 761.1738302335193
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 1.8022971153259277,
+            "500_1500m": 1.8506182432174683,
+            "750_2000m": 1.8511987924575806
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 1.4728524658250706,
+            "heldout_excess_f": 0.7387755670768286
+          }
+        },
+        {
+          "name": "C",
+          "cells": 18,
+          "area_km2": 0.18,
+          "mean_excess_f": 0.9055794477462769,
+          "mean_local_contrast_f": 1.1773555666723041,
+          "example_excess_f": 1.5245894193649292,
+          "example_local_contrast_f": 1.8178473604508327,
+          "drivers": [
+            {
+              "feature": "NDVI_mean_210m",
+              "label": "Vegetation nearby",
+              "contribution_f": 0.5081963539123535,
+              "feature_value": 0.31803644481907345,
+              "ring_feature_mean": 0.47238933662730587
+            },
+            {
+              "feature": "PM25",
+              "label": "Fine particle concentration",
+              "contribution_f": 0.15880048274993896,
+              "feature_value": 9.298548219,
+              "ring_feature_mean": 9.302957253607811
+            },
+            {
+              "feature": "NDVI_mean_630m",
+              "label": "Neighborhood vegetation",
+              "contribution_f": 0.12410207092761993,
+              "feature_value": 0.4045662745400509,
+              "ring_feature_mean": 0.46964224720322195
+            },
+            {
+              "feature": "Distance_to_Lake",
+              "label": "Distance to a lake",
+              "contribution_f": 0.11950021237134933,
+              "feature_value": 3710.193145579581,
+              "ring_feature_mean": 3779.2660005209027
+            },
+            {
+              "feature": "LOWINCPCT",
+              "label": "Lower-income population share",
+              "contribution_f": 0.10170391947031021,
+              "feature_value": 0.934903047,
+              "ring_feature_mean": 0.681896105225
+            },
+            {
+              "feature": "NDBI_mean_630m",
+              "label": "Neighborhood built-up signal",
+              "contribution_f": 0.07846272736787796,
+              "feature_value": -0.10023087517705186,
+              "ring_feature_mean": -0.15127331521523918
+            }
+          ],
+          "ring_sensitivity_f": {
+            "300_1000m": 1.8045276403427124,
+            "500_1500m": 1.8178473711013794,
+            "750_2000m": 1.8114370107650757
+          },
+          "nearby_survey": {
+            "distance_m": 0.0,
+            "observed_excess_f": 1.9768928698654662,
+            "heldout_excess_f": 0.5959609308463598
+          }
+        }
+      ],
+      "supported_land_share": 0.20332299160160466,
+      "predicted_excess_supported_p05_p95": [
+        -1.8265093564987183,
+        0.9044501185417175
+      ]
+    }
+  },
+  "feature_labels": {
+    "PM25": "Fine particle concentration",
+    "PTRAF": "Traffic proximity indicator",
+    "NDVI": "Vegetation at the cell",
+    "NDVI_mean_210m": "Vegetation nearby",
+    "NDVI_mean_630m": "Neighborhood vegetation",
+    "NDVI_mean_2130m": "Wider-area vegetation",
+    "NDVI_local_contrast": "Local vegetation contrast",
+    "NDBI": "Built-up signal at the cell",
+    "NDBI_mean_210m": "Built-up signal nearby",
+    "NDBI_mean_630m": "Neighborhood built-up signal",
+    "NDBI_mean_2130m": "Wider-area built-up signal",
+    "NDBI_local_contrast": "Local built-up contrast",
+    "Distance_to_Lake": "Distance to a lake",
+    "Distance_to_Stream": "Distance to a stream",
+    "Distance_to_Park": "Distance to a park",
+    "road_pixel_fraction_210m": "Streets nearby",
+    "road_pixel_fraction_630m": "Neighborhood street footprint",
+    "vegetated_fraction_630m": "Greener pixel share",
+    "built_signal_fraction_630m": "Built-signal pixel share",
+    "tree_canopy_fraction": "Tree canopy share",
+    "PRE1960PCT": "Older housing share",
+    "LOWINCPCT": "Lower-income population share",
+    "OVER64PCT": "Older population share",
+    "UNEMPPCT": "Unemployment share",
+    "MdSalesPr": "Median residential sale price",
+    "CoefVar": "Sale price variation",
+    "PHHOO": "Owner-occupied housing share",
+    "VptResVac": "Residential vacancy share",
+    "PPermNCUnt": "New construction permit indicator",
+    "PRehabPerm": "Rehabilitation permit indicator",
+    "PFclOO1517": "Foreclosure indicator",
+    "PCVLnRsPr": "Code violation indicator",
+    "PPubSubAll": "Subsidized housing indicator",
+    "PAPerm": "Permit activity indicator",
+    "TOA_B1": "Satellite reflectance band 1",
+    "TOA_B2": "Satellite reflectance band 2",
+    "TOA_B3": "Satellite reflectance band 3",
+    "TOA_B4": "Satellite reflectance band 4",
+    "TOA_B5": "Satellite reflectance band 5",
+    "TOA_B6": "Satellite reflectance band 6",
+    "TOA_B7": "Satellite reflectance band 7",
+    "Brightness_B10_K": "Satellite thermal signal 10",
+    "Brightness_B11_K": "Satellite thermal signal 11",
+    "MVA_A": "Market area category A",
+    "MVA_B": "Market area category B",
+    "MVA_C": "Market area category C",
+    "MVA_D": "Market area category D",
+    "MVA_E": "Market area category E",
+    "MVA_F": "Market area category F",
+    "MVA_G": "Market area category G",
+    "MVA_H": "Market area category H",
+    "MVA_I": "Market area category I",
+    "MVA_Missing": "No market area category"
+  },
+  "global_features": {
+    "Morning": [
+      "PM25",
+      "NDVI_mean_2130m",
+      "Distance_to_Lake",
+      "Distance_to_Stream",
+      "PTRAF",
+      "NDVI_mean_210m",
+      "LOWINCPCT",
+      "vegetated_fraction_630m",
+      "NDVI_mean_630m",
+      "NDBI_mean_2130m"
+    ],
+    "Afternoon": [
+      "PM25",
+      "NDBI_mean_2130m",
+      "Distance_to_Lake",
+      "vegetated_fraction_630m",
+      "Distance_to_Stream",
+      "PTRAF",
+      "NDVI_mean_2130m",
+      "road_pixel_fraction_630m",
+      "Brightness_B10_K",
+      "built_signal_fraction_630m"
+    ],
+    "Evening": [
+      "NDVI_mean_210m",
+      "PM25",
+      "NDVI_mean_630m",
+      "Distance_to_Lake",
+      "OVER64PCT",
+      "LOWINCPCT",
+      "NDBI_mean_2130m",
+      "Distance_to_Stream",
+      "road_pixel_fraction_630m",
+      "Distance_to_Park"
+    ]
+  },
+  "global_directions": {
+    "Morning": [
+      {
+        "feature": "PM25",
+        "high_minus_low_mean_shap_f": 2.5331871509552
+      },
+      {
+        "feature": "NDVI_mean_2130m",
+        "high_minus_low_mean_shap_f": -0.5451905727386475
+      },
+      {
+        "feature": "Distance_to_Lake",
+        "high_minus_low_mean_shap_f": 0.03695666417479515
+      },
+      {
+        "feature": "Distance_to_Stream",
+        "high_minus_low_mean_shap_f": -0.17893242835998535
+      },
+      {
+        "feature": "PTRAF",
+        "high_minus_low_mean_shap_f": 0.16314032673835754
+      },
+      {
+        "feature": "NDVI_mean_210m",
+        "high_minus_low_mean_shap_f": -0.15081366896629333
+      },
+      {
+        "feature": "LOWINCPCT",
+        "high_minus_low_mean_shap_f": -0.08101724833250046
+      },
+      {
+        "feature": "vegetated_fraction_630m",
+        "high_minus_low_mean_shap_f": -0.1248466968536377
+      },
+      {
+        "feature": "NDVI_mean_630m",
+        "high_minus_low_mean_shap_f": -0.08636528998613358
+      },
+      {
+        "feature": "NDBI_mean_2130m",
+        "high_minus_low_mean_shap_f": 0.008060622029006481
+      }
+    ],
+    "Afternoon": [
+      {
+        "feature": "PM25",
+        "high_minus_low_mean_shap_f": 0.47972697019577026
+      },
+      {
+        "feature": "NDBI_mean_2130m",
+        "high_minus_low_mean_shap_f": -0.10235469788312912
+      },
+      {
+        "feature": "Distance_to_Lake",
+        "high_minus_low_mean_shap_f": -0.004402283579111099
+      },
+      {
+        "feature": "vegetated_fraction_630m",
+        "high_minus_low_mean_shap_f": -0.2189125120639801
+      },
+      {
+        "feature": "Distance_to_Stream",
+        "high_minus_low_mean_shap_f": 0.055244822055101395
+      },
+      {
+        "feature": "PTRAF",
+        "high_minus_low_mean_shap_f": -0.05003581568598747
+      },
+      {
+        "feature": "NDVI_mean_2130m",
+        "high_minus_low_mean_shap_f": -0.08911632001399994
+      },
+      {
+        "feature": "road_pixel_fraction_630m",
+        "high_minus_low_mean_shap_f": -0.115944504737854
+      },
+      {
+        "feature": "Brightness_B10_K",
+        "high_minus_low_mean_shap_f": 0.11847332864999771
+      },
+      {
+        "feature": "built_signal_fraction_630m",
+        "high_minus_low_mean_shap_f": -0.13180308043956757
+      }
+    ],
+    "Evening": [
+      {
+        "feature": "NDVI_mean_210m",
+        "high_minus_low_mean_shap_f": -0.7380207777023315
+      },
+      {
+        "feature": "PM25",
+        "high_minus_low_mean_shap_f": 0.3142491579055786
+      },
+      {
+        "feature": "NDVI_mean_630m",
+        "high_minus_low_mean_shap_f": -0.22997653484344482
+      },
+      {
+        "feature": "Distance_to_Lake",
+        "high_minus_low_mean_shap_f": 0.1416063904762268
+      },
+      {
+        "feature": "OVER64PCT",
+        "high_minus_low_mean_shap_f": -0.0685468316078186
+      },
+      {
+        "feature": "LOWINCPCT",
+        "high_minus_low_mean_shap_f": -0.09513384848833084
+      },
+      {
+        "feature": "NDBI_mean_2130m",
+        "high_minus_low_mean_shap_f": -0.01348034292459488
+      },
+      {
+        "feature": "Distance_to_Stream",
+        "high_minus_low_mean_shap_f": 0.013894450850784779
+      },
+      {
+        "feature": "road_pixel_fraction_630m",
+        "high_minus_low_mean_shap_f": 0.10627612471580505
+      },
+      {
+        "feature": "Distance_to_Park",
+        "high_minus_low_mean_shap_f": -0.1022627204656601
+      }
+    ]
+  },
+  "local_definition": "above the period training upper-quartile threshold and at least 0.25\u00b0F above the mean predicted land cells 500\u20131500m away; >=3 contiguous 100m cells",
+  "support_note": "feature novelty and distance screening; not calibrated uncertainty",
+  "afternoon_global_features": [
+    "PM25",
+    "NDBI_mean_2130m",
+    "Distance_to_Lake",
+    "vegetated_fraction_630m",
+    "Distance_to_Stream",
+    "PTRAF",
+    "NDVI_mean_2130m",
+    "road_pixel_fraction_630m",
+    "Brightness_B10_K",
+    "built_signal_fraction_630m"
+  ],
+  "shared_cells": 2114,
+  "observed_period_correlations": {
+    "Morning / Afternoon": 0.3083299350415814,
+    "Morning / Evening": 0.5428051809731208,
+    "Afternoon / Evening": 0.4423670583828535
+  }
+}
