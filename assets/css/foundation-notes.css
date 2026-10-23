@@ -1,0 +1,15 @@
+.foundation-notes section { margin-top: 2.5rem; scroll-margin-top: 6rem; }
+.foundation-notes p, .foundation-notes li { max-width: 78ch; }
+.notes-jumps { line-height: 2; margin-bottom: 1.5rem; }
+.notes-figure, .notes-callout { border: 1px solid var(--border); border-radius: .6rem; padding: 1.25rem; margin: 1.5rem 0; }
+.notes-figure figcaption { margin-top: 1rem; font-size: .9em; color: var(--muted-foreground); }
+.notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.notes-flow { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+.notes-flow li { flex: 1 1 8rem; border-left: 3px solid var(--primary); padding: .75rem; }
+.shape-equation { display: flex; align-items: center; justify-content: space-around; gap: 1rem; flex-wrap: wrap; text-align: center; }
+.notes-figure svg { display: block; width: 100%; max-width: 600px; margin: auto; }
+.notes-figure input[type="range"] { display: block; width: 100%; margin: 1rem 0; }
+.notes-figure select { max-width: 100%; margin: .5rem 0 1rem; }
+.foundation-notes summary { cursor: pointer; font-weight: bold; margin-bottom: 1rem; }
+.foundation-notes .MathJax { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+@media (max-width: 640px) { .notes-grid { grid-template-columns: 1fr; } .notes-figure { padding: 1rem; } .notes-figure button { width: 100%; margin-bottom: .75rem; } }

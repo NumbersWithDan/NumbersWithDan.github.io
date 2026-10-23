@@ -753,6 +753,11 @@
 			margin-bottom: 1em;
 		}
 
+		/* Footer cells have no top padding, so cancel the grid's negative top margin. */
+		#footer .row {
+			margin-top: 0;
+		}
+
 		#footer .row > * {
 			padding-top: 0;
 		}
